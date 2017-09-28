@@ -1,0 +1,54 @@
+.swiper-container 
+  width: 100%
+  height: 400px
+  margin: 20px auto
+
+
+.swiper-slide 
+  text-align: center
+  font-size: 18px
+
+
+  /* Center slide text vertically */
+  display: -webkit-box
+  display: -ms-flexbox
+  display: -webkit-flex
+  display: flex
+  -webkit-box-pack: center
+  -ms-flex-pack: center
+  -webkit-justify-content: center
+  justify-content: center
+  -webkit-box-align: center
+  -ms-flex-align: center
+  -webkit-align-items: center
+  align-items: center
+
+
+.swiper-button-prev, .swiper-button-next
+  padding: 10px
+  background: 
+    color: rgba(0, 0, 0, .1)
+    image: none !important
+  transition: all 0.2s ease-in-out
+
+  &:hover
+    background: 
+      color: rgba(0, 0, 0, .2)
+    transition: all 0.2s ease-in-out
+
+
+.swiper-button-prev
+  margin-left: -12px
+  svg
+    width: 60px
+    height: 60px
+    margin-left: -18px
+    margin-top: -7px
+
+.swiper-button-next
+  margin-right: -12px
+  svg
+    width: 60px
+    height: 60px
+    margin-left: -18px
+    margin-top: -7px
