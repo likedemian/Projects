@@ -1,4 +1,4 @@
 ## Projects
 
 
-[MyPage](https://likedemian.github.io/projects/)
+[MyPage](https://likedemian.github.io/Projects/)
