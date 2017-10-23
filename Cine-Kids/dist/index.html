@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko-kr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Document</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../node_modules/material-components-web/dist/material-components-web.css">
+  <link rel="stylesheet" type="text/css" href="../node_modules/swiper/dist/css/swiper.min.css">
+</head>
+
+<body>
+  <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+  <header>
+    <div class="header__main__wrap">
+      <div class="header__logo">
+        <a class="header__logo__link" href="#">
+          <h1 class="header__logo__text">cine kids</h1>
+        </a>
+      </div>
+    </div>
+    <div class="header__sub__wrap">
+      <div class="header__search">
+        <input class="header__search-bar" type="text" name="Search bar">
+        <button class="header__search__button">
+          <i class="search-button material-icons">search</i>
+        </button>
+      </div>
+    </div>
+  </header>
+  <section class="carousel">
+    <div class="carousel__wrap">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </section>
+  <nav>
+    <div class="nav__main__wrap">
+      <ul class="nav__main__list">
+        <a href="#">
+          <li class="nav__item">New Arrivals</li>
+        </a>
+        <a href="#">
+          <li class="nav__item">Top Rated</li>
+        </a>
+        <a href="#">
+          <li class="nav__item">Trending</li>
+        </a>
+      </ul>
+    </div>
+    <div class="nav__sub__wrap">
+      <ul class="nav__sub__list">
+        <a href="">
+          <li class="nav__item">
+            <i class="material-icons nav__view__mode">view_module</i>
+          </li>
+        </a>
+        <a href="">
+          <li class="nav__item">
+            <i class="material-icons nav__view__mode">view_list</i>
+          </li>
+        </a>
+      </ul>
+    </div>
+  </nav>
+  <div class="main-section">
+    <div class="main__wrap">
+      <div class="main__cont">
+        <ul class="main__cont__list">
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/swiper/dist/js/swiper.min.js"></script>
+  <script src="js/swiper.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

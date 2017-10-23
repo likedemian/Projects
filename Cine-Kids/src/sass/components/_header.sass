@@ -1,0 +1,63 @@
+header
+  width: 100%
+  background-color: $google-primary
+  height: 72px
+  display: block
+
+.header__main__wrap
+  float: left
+  height: 100%
+  display: flex
+
+.header__logo
+  display: flex
+  justify-content: center
+  align-items: center
+  padding-left: 5rem
+
+.header__logo__link
+  text-decoration: none
+
+.header__logo__text
+  font: 
+    family: Roboto Mono
+    size: 2rem
+  list-style: none
+  color: #fff
+  letter-spacing: 1px
+
+.header__sub__wrap
+  float: right
+  height: 100%
+  display: flex
+  
+
+.header__search
+  padding-right: 5rem
+  display: flex
+  justify-content: center
+  align-items: center
+
+
+.header__search-bar
+  border: 
+    radius: 20px
+    style: none
+  height: 1.6rem
+  width: 150px
+  margin-right: 1rem
+  text-indent: 0.5rem
+  &.active
+    width: 200px
+
+.header__search__button
+  border: 
+    style: none
+    radius: 3px
+  font: 
+    family: roboto, sans-serif
+    size: 14px
+  background-color: transparent
+  .search-button
+    color: #fff
+    cursor: pointer
