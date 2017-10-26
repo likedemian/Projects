@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset=utf-8>
+  <meta name=description content="">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <title>ASAP</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="../node_modules/swiper/dist/css/swiper.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<body class="background">
+  <div class="container">
+    <header>
+      <div class=" header__container">
+        <div class="header__menu__container">
+          <i class="material-icons menu-icon">sort</i>
+        </div>
+        <div class="header__logo__continaer">
+          <span class="header__logo__text">A</span>
+          <span class="header__logo__text">S</span>
+          <span class="header__logo__text">A</span>
+          <span class="header__logo__text">P</span>
+        </div>
+        <div class="header__search__container">
+          <input class="header__search-bar">
+          <button class="header__search-button"><i class="material-icons search-icon">search</i></button>
+        </div>
+      </div>
+    </header>
+    <nav class="nav__container">
+      <ul class="nav__list">
+        <a href="">
+          <li class="nav__item">Trending</li>
+        </a>
+        <a href="">
+          <li class="nav__item">Top Rated</li>
+        </a>
+        <a href="">
+          <li class="nav__item">New Arrivals</li>
+        </a>
+      </ul>
+    </nav>
+    <main>
+      <div class="main__container">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="main__movie-list__wrap">
+                <div class="movie__poster__wrap">
+                  <img class="movie__poster" src="medium-cover.jpg">
+                  <div class="movie__rating"></div>
+                </div>
+                <div class="movie__info__wrap">
+                  <h2 class="movie__title">Big Hero6</h2>
+                  <p class="movie__year">2014</p>
+                  <p class="movie__genre">Animation</p>
+                  <button class="movie__button">More Info</button>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
+            <div class="swiper-slide">Slide 6</div>
+            <div class="swiper-slide">Slide 7</div>
+            <div class="swiper-slide">Slide 8</div>
+            <div class="swiper-slide">Slide 9</div>
+            <div class="swiper-slide">Slide 10</div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/swiper/dist/js/swiper.min.js"></script>
+  <script src="js/jquery.shuffleLetters.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/swiper.js"></script>
+  <script src="js/shuffle.js"></script>
+</body>
+
+</html>

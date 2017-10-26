@@ -1,0 +1,186 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  font-family: "Roboto", sans-serif; }
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after {
+  content: "";
+  content: none; }
+
+q:before, q:after {
+  content: "";
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.header__container {
+  width: 100%;
+  height: 3rem;
+  margin-top: 1rem; }
+
+.header__menu__container {
+  float: left;
+  margin-left: 1rem;
+  padding: 0.5rem;
+  height: 1.5rem;
+  z-index: 3;
+  color: #aaa;
+  position: absolute; }
+
+.menu-icon {
+  line-height: 1.75rem;
+  cursor: pointer; }
+
+.header__logo__continaer {
+  margin-left: 4rem;
+  padding: 0.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  display: inline-block; }
+
+.header__logo__text {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2rem;
+  font-family: "Roboto", sans-serif; }
+
+.header__search__container {
+  float: right;
+  padding: 0.5rem;
+  height: 1.5rem;
+  margin-right: 2rem; }
+
+.header__search-bar {
+  width: 150px;
+  font-size: 1.5rem;
+  border: 0;
+  border-bottom: 1.5px solid #181818;
+  outline: none; }
+
+@media screen and (max-width: 768px) {
+  .header__search-bar {
+    width: 100px;
+    display: none; } }
+.header__search-button {
+  background: 0;
+  border: 0; }
+
+.nav__container {
+  display: none;
+  transition: all 0.2s ease;
+  z-index: 2; }
+  .nav__container.active {
+    display: block;
+    background: #fafafa;
+    opacity: 0.95;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25); }
+
+.nav__list {
+  margin-top: 7.5rem;
+  list-style: none;
+  font-family: "Lato", sans-serif;
+  letter-spacing: 1px; }
+  .nav__list a {
+    text-decoration: none;
+    color: #383838; }
+
+.nav__item {
+  font-size: 1.5rem;
+  width: 250px;
+  display: inline-block;
+  margin: 1.5rem; }
+
+body {
+  height: 100vh; }
+
+.background {
+  background: linear-gradient(-45deg, #37ecba 0%, #72afd3 100%) no-repeat;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
+
+.container {
+  position: relative;
+  background: #fff;
+  margin: 0 auto;
+  width: 85%;
+  height: 85%;
+  border-radius: 5px;
+  overflow-y: scroll; }
+
+.main__container {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  width: 375px; }
+
+.main__movie-list__wrap {
+  background: #f8f8f8;
+  border-radius: 3px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  height: 100%;
+  margin: 0 auto; }
+
+.movie__poster {
+  width: 80%;
+  margin: 0 auto; }
+
+.movie__info__wrap {
+  text-align: center;
+  padding: 1rem; }
+
+.movie__title {
+  font-size: 1.2rem;
+  display: inline-block; }
+
+.movie__year {
+  display: inline-block;
+  font-size: 0.8rem; }
+
+.movie__genre {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-bottom: 1rem; }
+
+.movie__button {
+  width: 80%;
+  height: 2.5rem;
+  font-size: 0.8rem;
+  background: linear-gradient(45deg, #00cdac 0%, #fbed96 100%) no-repeat;
+  color: #fff;
+  border: 0;
+  margin: 0 auto; }
+
+/*# sourceMappingURL=main.css.map */
