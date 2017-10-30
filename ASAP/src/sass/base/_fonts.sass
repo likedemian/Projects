@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500,700')
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700')
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700')
+
+
+@function calculateRem($size) 
+  $remSize: $size / 16px
+  @return $remSize * 1rem
+
+@mixin font-size($size) 
+  font-size: $size
+  font-size: calculateRem($size)
+
+$main-font: 'Lato', sans-serif
+$sub-font: 'Roboto', sans-serif
+$special-font: 'Ubuntu', sans-serif
