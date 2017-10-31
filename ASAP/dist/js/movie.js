@@ -1,18 +1,75 @@
-function init() { movieWrap = $(".main__movie__wrap"), getData() }
+;
+(function(global, $) {
+  'use strict';
+  var movieWrap;
+  var movieCoverWrap;
+  var data = [];
 
-function getData() { var a = "https://yts.ag/api/v2/list_movies.json?sort_by=download_count&limit=6";
-  $.getJSON(a, function(a) { data = data.concat(a.data.movies), $.each(data, function(a, e) { render(e, a) }) }) }
+  function init() {
+    movieWrap = $('.main__movie__wrap');
+    movieCoverWrap = $('.swiper-wrapper');
+    getMovies();
+  }
 
-function render(a, e) { var i = $('<li class="main__movie-list__wrap" data-index="' + e + '"></li>'),
-    n = $('<div class="movie__item__wrap"></div>'),
-    t = $('<div class="movie__poster__wrap"></div>'),
-    p = $('<div class="movie__info__wrap"></div>'),
-    s = $('<img class="movie__poster" src="' + a.medium_cover_image + '" alt="' + a.title + '"/>'),
-    _ = $('<h3 class="movie__title">' + a.title + "</h3>"),
-    o = $('<span class="movie__year">' + a.year + "</span>"),
-    r = $('<span class="movie__rating">' + (a.rating / 2).toFixed(1) + "</span>");
-  btnWrap = $('<div class="detail__button"></div>'), btnParam = $('<p class="btn__param">More Info</p>'); var d = "",
-    v = null;
-  $.each(a.genres, function(e, i) { a.genres.length - 1 === e ? d += i : d += i + " | " }), v = $('<p class="movie__genre">' + d + "</p>"), btnWrap.append(btnParam), t.append(s), t.append(r), p.append(_), p.append(o), p.append(v), p.append(btnWrap), n.append(t), n.append(p), i.append(n), movieWrap.append(i) }
-var movieWrap, data = [];
-init();
+
+
+  function getMovies() {
+    var API = '?api_key=64391ca210dbae0d44b0a622177ef8d3';
+    var state = {
+      discover: 'https://api.themoviedb.org/3/discover/movie',
+      movies: 'https://api.themoviedb.org/3/movie/',
+      search: 'https://api.themoviedb.org/3/search/movie',
+      poster_small: 'https://image.tmdb.org/t/p/w342',
+      backdrop : "https://image.tmdb.org/t/p/w1280",  
+      profile: 'https://image.tmdb.org/t/p/w185',
+      popularity: '&sort_by=popularity.desc',
+      popularity_recent: '&primary_release_year=2010&sort_by=popularity.desc',
+      korean: '&language=ko',
+      keyword: ''
+    }
+
+    // state.url_search + state.api_key + state.url_korean + "&query=" + keyword
+    $.get(state.discover + API + state.korean + state.popularity_recent)
+      .then((response) => {
+        console.log(response);
+        let movies = response.results;
+        let coverOutput = '';
+        let listOutput = '';
+        $.each(movies, (index, movie) => {
+          coverOutput += `
+          <div class="swiper-slide"> 
+            <img src="${state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
+            <h2 class="main__cover__title">${movie.title}</h2>
+            <span class="main__cover__release">개봉일: ${movie.release_date}</span>
+            <span class="main__cover__rating">평점: ${movie.vote_average}</span>
+            <p class="main__cover__synopsis">${movie.overview}</p>
+          </div>
+          `
+          listOutput += `
+            <li class="main__movie-list__wrap" data-index="' + index + '">
+              <div class="movie__item__wrap">
+                <div class="movie__poster__wrap">
+                  <img class="movie__poster" src="${state.poster_small+movie.poster_path}" alt="${movie.title}"/>
+                  <span class="movie__rating">${movie.vote_average}</span>
+                </div>
+                <div class="movie__info__wrap">
+                  <h3 class="movie__title">${movie.title}</h3>
+                  <p class="movie__genre">${movie.genre_ids}</p>
+                <div class="detail__button">
+                  <p class="btn__param">More Info</p>
+                </div>
+                </div>
+              </div>
+            </li>
+          `;
+        });
+        movieWrap.append(listOutput)
+        movieCoverWrap.append(coverOutput)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+  init();
+
+})(window, window.jQuery);

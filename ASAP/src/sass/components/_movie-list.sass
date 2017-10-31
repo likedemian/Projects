@@ -5,10 +5,13 @@
   background: #f8f8f8
   border-radius: 3px
   box-shadow: 0 2px 10px rgba(0,0,0,0.2)
-  width: calc((100% - 12rem) / 6)
+  width: calc((100% - 8rem) / 4)
   height: 100%
   margin: 1rem
   float: left
+
+
+
 
 
 @media screen and (min-width: 326px) and (max-width: $mq-tablet-portrait)
@@ -29,20 +32,22 @@
 
 
 .movie__poster__wrap
-  margin: 0
   position: relative
+  height: 270px
+  margin: 1rem 0
 
 .movie__poster
-  width: 90%
-  margin: 0 auto
   display: block
-  margin: 0.5rem auto
+  object-fit: cover
+  max-width: 100%
+  max-height: 100%
+  margin: 0 auto
   box-shadow: 0 2px 8px rgba(0,0,0,0.5)
 
 .movie__rating
   position: absolute
   top: 10px
-  left: 20px
+  left: 25px
   color: #fff
   font:
     family: "San Francisco", sans-serif

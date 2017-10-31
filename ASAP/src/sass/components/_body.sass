@@ -1,41 +1,42 @@
-body
-  height: 100vh
+html 
+  background: #efefef
+  margin: 0
+  padding: 0
+// .background
+//   background: linear-gradient(-45deg, #37ecba 0%, #72afd3 100%) no-repeat
+//   width: 100%
+//   display: -webkit-box
+//   display: -webkit-flex
+//   display: -moz-box
+//   display: -ms-flexbox
+//   display: flex
+//   -webkit-flex-align: center
+//   -ms-flex-align: center
+//   -webkit-align-items: center
+//   align-items: center
 
-.background
-  background: linear-gradient(-45deg, #37ecba 0%, #72afd3 100%) no-repeat
-  width: 100%
-  display: -webkit-box
-  display: -webkit-flex
-  display: -moz-box
-  display: -ms-flexbox
-  display: flex
-  -webkit-flex-align: center
-  -ms-flex-align: center
-  -webkit-align-items: center
-  align-items: center
 
+@media screen and (min-width: $mq-tablet-landscape)
+  .container
+    position: relative
+    background: #efefef
+    margin: 0 auto
+    width: 1024px
 
-.container
-  position: relative
-  background: #fff
-  margin: 0 auto
-  width: 85%
-  height: 85%
-  border-radius: 5px
-  overflow-y: scroll
+@media screen and (max-width: $mq-tablet-portrait)
+  .container
+    position: relative
+    background: #efefef
+    margin: 0 auto
+    width: 100%
 
 
 .main__container
   margin: 0 auto
+  margin-top: 2rem
 
 @media screen and (max-width: 375px)
   .main__container
     margin: 0 auto
     width: 100%
 
-
-.main__cover__container
-  width: 100%
-  height: 30vh
-  margin: 1.5rem auto
-  background: $sub-gradient

@@ -5,19 +5,33 @@
 
   function init() {
     movieWrap = $('.main__movie__wrap');
-    getData();
+    getMovies();
   }
 
 
 
-  function getData() {
-    var URL = 'https://yts.ag/api/v2/list_movies.json?sort_by=download_count&limit=6'
-    $.getJSON(URL, function(response) {
-      data = data.concat(response.data.movies)
-      $.each(data, function(index, data) {
-        render(data, index);
-      });
-    })
+  function getMovies() {
+    var API = '?api_key=64391ca210dbae0d44b0a622177ef8d3';
+    var state = {
+      discover = 'https://api.themoviedb.org/3/discover/movie',
+      movies = 'https://api.themoviedb.org/3/movie/',
+      search = 'https://api.themoviedb.org/3/search/movie',
+      poster_small = 'https://image.tmdb.org/t/p/w342',
+      poster_large = 'https://image.tmdb.org/t/p/w500',
+      profile = 'https://image.tmdb.org/t/p/w185',
+      popularity = '&sort_by=popularity.desc',
+      korean = '&language=ko',
+      keyword = '',
+      data = '';
+    }
+
+    axios.get(state + API)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
 

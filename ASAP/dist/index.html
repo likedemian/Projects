@@ -5,14 +5,14 @@
   <meta charset=utf-8>
   <meta name=description content="">
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <title>ASAP</title>
+  <title>CINE LISTS</title>
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="../node_modules/swiper/dist/css/swiper.min.css">
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body class="background">
+<body>
   <div class="container">
     <header>
       <div class=" header__container">
@@ -20,35 +20,50 @@
           <i class="material-icons menu-icon">sort</i>
         </div>
         <div class="header__logo__continaer">
-          <span class="header__logo__text">A</span>
-          <span class="header__logo__text">S</span>
-          <span class="header__logo__text">A</span>
-          <span class="header__logo__text">P</span>
+          <a href="#" class="header__logo__link">
+            <span class="header__logo__text">C</span>
+            <span class="header__logo__text">I</span>
+            <span class="header__logo__text">N</span>
+            <span class="header__logo__text">E</span>
+            <span class="header__logo__text">&nbsp;</span>
+            <span class="header__logo__text">L</span>
+            <span class="header__logo__text">I</span>
+            <span class="header__logo__text">S</span>
+            <span class="header__logo__text">T</span>
+            <span class="header__logo__text">S</span>
+          </a>
         </div>
         <div class="header__search__container">
           <input class="header__search-bar">
           <button class="header__search-button"><i class="material-icons search-icon">search</i></button>
         </div>
       </div>
+      <div class="main__cover__container">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
     </header>
     <nav class="nav__container">
-      <ul class="nav__list">
-        <a href="">
-          <li class="nav__item">Trending</li>
-        </a>
-        <a href="">
-          <li class="nav__item">Top Rated</li>
-        </a>
-        <a href="">
-          <li class="nav__item">New Arrivals</li>
-        </a>
-      </ul>
+      <div class="nav__main-wrap">
+        <ul class="nav__list">
+          <a href="#"><li class="nav__item">Trending</li></a>
+          <a href="#"><li class="nav__item">Top Rated</li></a>
+          <a href="#"><li class="nav__item">New Arrivals</li></a>
+        </ul>
+      </div>
+      <div class="nav__sub-wrap">
+        <div class="nav__view__lists">
+          <a href=""><i class="material-icons menu-icon nav__view__module">sort</i></a>
+          <a href=""><i class="material-icons menu-icon nav__view__list">clear</i></a>
+        </div>
+      </div>
     </nav>
     <main>
       <div class="main__container">
-        <div class="main__cover__container">
-          <img src="#" alt="main image" class="main__cover__image">
-        </div>
         <ul class="main__movie__wrap">
         </ul>
       </div>
