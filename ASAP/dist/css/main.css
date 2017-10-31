@@ -74,7 +74,6 @@ body {
   cursor: pointer; }
 
 .header__logo__continaer {
-  margin-left: 4rem;
   padding: 0.5rem;
   height: 1.5rem;
   line-height: 1.5rem;
@@ -181,10 +180,11 @@ html {
     text-decoration: none; }
 
 .nav__view__module, .nav__view__list {
+  line-height: 72px !important;
   font-size: 1rem;
   float: left;
   color: #8C8C8C;
-  padding: 0 2rem; }
+  padding: 0 2.5rem; }
   .nav__view__module:hover, .nav__view__list:hover {
     color: #37ecba;
     border-bottom: 1px solid #37ecba; }
@@ -192,7 +192,7 @@ html {
 .main__cover__container {
   width: 100%;
   height: auto;
-  margin: 2rem auto;
+  margin: 2rem auto 0 auto;
   position: relative; }
 
 .main__cover__image {
