@@ -35,23 +35,22 @@
       pages: '&page=',
       keyword: '',
       search_data: '',
-      noposter: ''
+      no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png'
     }
     $.get(state.discover + API + state.popularity_recent + state.pages + page)
       .then((response) => {
-        state.search_data = response.results;
-        let search_length = state.search_data.length;
-        console.log(search_length);
-        console.log(state.search_data.poster_path);
-        for (let i = 0; i < search_length; i++) {
-          (state.search_data.poster_path) ? state.search_data.poster_path = state.url_poster_small + state.search_data.poster_path : state.search_data.poster_path = state.url_noposter_search;
-        }
-
-        console.log(response);
+        let i = 1;
         let movies = response.results;
         let coverOutput = '';
         let listOutput = '';
+        let search_length = movies.length;
+        console.log(state.poster_small+'null');
+        // console.log('movies.poster_path:', movies[i].poster_path);
+        // console.log('search_length::::::::', search_length);
+
         $.each(movies, (index, movie) => {
+
+
           coverOutput += `
           <div class="swiper-slide"> 
             <img src="${state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
@@ -65,7 +64,7 @@
             <li class="main__movie-list__wrap" data-index="' + index + '">
               <div class="movie__item__wrap">
                 <div class="movie__poster__wrap">
-                  <img class="movie__poster" src="${state.poster_small+movie.poster_path}" alt="${movie.title}"/>
+                  <img class="movie__poster" src="${(state.poster_small + movie.poster_path === state.poster_small+'null') ? state.no_poster: state.poster_small + movie.poster_path }" alt="${movie.title}"/>
                   <span class="movie__rating">${movie.vote_average}</span>
                 </div>
                 <div class="movie__info__wrap">
