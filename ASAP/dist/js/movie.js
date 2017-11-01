@@ -37,7 +37,7 @@
       search_data: '',
       no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png'
     }
-    $.get(state.discover + API + state.popularity_recent + state.pages + page)
+    $.get(state.discover + API + state.korean + state.popularity_recent + state.pages + page)
       .then((response) => {
         let i = 1;
         let movies = response.results;
@@ -47,10 +47,10 @@
         console.log(state.poster_small+'null');
         // console.log('movies.poster_path:', movies[i].poster_path);
         // console.log('search_length::::::::', search_length);
-
         $.each(movies, (index, movie) => {
 
 
+          console.log('movie.genre_ids :::', movie.genre_ids);
           coverOutput += `
           <div class="swiper-slide"> 
             <img src="${state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="movie__info__wrap">
                   <h3 class="movie__title">${movie.title}</h3>
-                  <p class="movie__genre">${movie.genre_ids}</p>
+                  <p class="movie__genre">${movie.genre_ids.length === 0 ? 'Not Yet Added Generes' : movie.genre_ids}</p>
                 <button class="detail__button">
                   <p class="ripple btn__param">More Info</p>
                 </button>
@@ -87,5 +87,4 @@
       })
   }
   init();
-
 })(window, window.jQuery);
