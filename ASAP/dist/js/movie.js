@@ -1,5 +1,6 @@
 ;
 (function(global, $) {
+  
   'use strict';
   var page = 1;
   var movieWrap;
@@ -29,34 +30,34 @@
       poster_small: 'https://image.tmdb.org/t/p/w342',
       backdrop: "https://image.tmdb.org/t/p/w1280",
       profile: 'https://image.tmdb.org/t/p/w185',
-      popularity: '&sort_by=popularity.desc',
-      popularity_recent: '&primary_release_year=2017&sort_by=popularity.desc',
+      popularity: '&sort_by=popularity.desc&vote_count.gte=100',
+      top_rated: '&sort_by=vote_average.desc&vote_count.gte=1000',
+      new_release: '&primary_release_year=2017&vote_count.gte=50',
       korean: '&language=ko',
       pages: '&page=',
       keyword: '',
       search_data: '',
-      no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png'
+      no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png',
+      no_cover: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no_cover_image.png'
     }
-    $.get(state.discover + API + state.popularity_recent + state.pages + page)
+    $.get(state.discover + API + state.new_release + state.pages + page)
       .then((response) => {
         let i = 1;
         let movies = response.results;
+        let search_length = movies.length;
         let coverOutput = '';
         let listOutput = '';
-        let search_length = movies.length;
         console.log(state.poster_small+'null');
         // console.log('movies.poster_path:', movies[i].poster_path);
         // console.log('search_length::::::::', search_length);
         $.each(movies, (index, movie) => {
 
-
-          console.log('movie.genre_ids :::', movie.genre_ids);
           coverOutput += `
           <div class="swiper-slide"> 
-            <img src="${state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
+            <img src="${state.backdrop+movie.backdrop_path === state.backdrop+'null' ? state.no_cover: state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
             <h2 class="main__cover__title">${movie.title}</h2>
-            <span class="main__cover__release">개봉일: ${movie.release_date}</span>
-            <span class="main__cover__rating">평점: ${movie.vote_average}</span>
+            <span class="main__cover__release">개봉일 : ${movie.release_date}</span>
+            <span class="main__cover__rating">평점 : ${movie.vote_average}</span>
             <p class="main__cover__synopsis">${movie.overview}</p>
           </div>
           `
