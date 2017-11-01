@@ -37,7 +37,7 @@
       search_data: '',
       no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png'
     }
-    $.get(state.discover + API + state.korean + state.popularity_recent + state.pages + page)
+    $.get(state.discover + API + state.popularity_recent + state.pages + page)
       .then((response) => {
         let i = 1;
         let movies = response.results;
