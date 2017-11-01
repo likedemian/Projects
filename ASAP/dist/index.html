@@ -5,7 +5,7 @@
   <meta charset=utf-8>
   <meta name=description content="">
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <title>CINE LISTS</title>
+  <title>CINEPHIL'S CINE LISTS</title>
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" type="text/css" href="../node_modules/swiper/dist/css/swiper.min.css">
   <!-- Material Icons -->
@@ -43,10 +43,14 @@
             <span class="header__logo__text">S</span>
           </a>
         </div>
-        <div class="header__search__container">
-          <input class="header__search-bar">
+        <form class="header__search__container">
+          <input class="header__search-bar" id="header__search-text">
           <button class="header__search-button"><i class="material-icons search-icon">search</i></button>
+        </form>
+        <div class="header__search__result__wrap">
+          
         </div>
+
       </div>
       <div class="main__cover__container">
         <div class="swiper-container">
@@ -82,11 +86,14 @@
   </div>
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="../node_modules/swiper/dist/js/swiper.min.js"></script>
+  <script src="../node_modules/axios/dist/axios.min.js"></script>
+
   <script src="js/jquery.shuffleLetters.js"></script>
   <script src="js/swiper.js"></script>
   <script src="js/shuffle.js"></script>
   <script src="js/hover.js"></script>
   <script src="js/movie.js"></script>
+  <script src="js/search.js"></script>
 </body>
 
 </html>
