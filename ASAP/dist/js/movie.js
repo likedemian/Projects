@@ -36,6 +36,9 @@ const init = () => {
 
 
 
+
+
+
 const bind = () => {
   $(window).scroll(function() {
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
@@ -48,6 +51,9 @@ const bind = () => {
 
 
 
+
+
+
 $(document).ready(() => {
   $('#header__search-form').on('submit', (e) => {
     let searchText = $('#header__search-text').val();
@@ -55,6 +61,9 @@ $(document).ready(() => {
     e.preventDefault();
   });
 });
+
+
+
 
 
 
@@ -84,11 +93,13 @@ const searchMovies = (searchText) => {
 
 
 
+
 const movieSelected = (id) => {
   sessionStorage.setItem('movieId', id);
   window.location = 'movie.html';
   return false
 }
+
 
 
 
@@ -111,17 +122,17 @@ const getMovie = () => {
           </div>
           <div class="">
             <ul class="">
-              <li class=""><strong>Genre:</strong> ${movie.genres[0].name}</li>
-              <li class=""><strong>Released:</strong> ${movie.release_date}</li>
-              <li class=""><strong>Rating:</strong> ${movie.vote_average}</li>
-              <li class=""><strong>Language:</strong> ${movie.original_language}</li>
-              <li class=""><strong>Run Time:</strong> ${movie.runtime}min</li>
+              <li class=""><strong>장르:</strong> ${movie.genres[0].name}</li>
+              <li class=""><strong>개봉일:</strong> ${movie.release_date}</li>
+              <li class=""><strong>평점:</strong> ${movie.vote_average}</li>
+              <li class=""><strong>언어:</strong> ${movie.spoken_languages[0].name}</li>
+              <li class=""><strong>상영시간:</strong> ${movie.runtime}분</li>
             </ul>
           </div>
         </div>
         <div class="">
           <div class="">
-            <h3>Plot</h3>
+            <h3>Synopsis</h3>
             ${movie.overview}
             <hr>
             <a href="http://imdb.com/title/${movie.imdb_id}" target="_blank" class="">View IMDB</a>
@@ -147,10 +158,8 @@ const getMovie = () => {
 
 
 
+
 const getMovies = () => {
-
-  // let genreKR = 'http://api.themoviedb.org/3/genre/movie/list?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko'
-
   let urls = {
     trending: state.discover + API + state.korean + state.popularity + state.pages + page,
     topRated: state.discover + API + state.korean + state.top_rated + state.pages + page,
@@ -199,7 +208,7 @@ const getMovies = () => {
     })
     .catch((err) => {
       console.log(err);
-    })
+    });
 };
 
 
