@@ -156,6 +156,14 @@ const getMovie = () => {
           <div class="main__detail__movie__wrap">
             <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" class="main__detail__poster">
           </div>
+          <ul class="main__detail__info__lists">
+            <li class="main__detail__info__item"><strong>개봉일: </strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li>
+            <li class="main__detail__info__item"><strong>장르: </strong> ${movie.genres[0].name}</li>
+            <li class="main__detail__info__item"><strong>평점: </strong>${movie.vote_average}/10</li>
+            <li class="main__detail__info__item"><strong>언어: </strong> ${movie.spoken_languages[0].name}</li>
+            <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime}분</li>
+          </ul>
+
           <div class="main__detail__btn__wrap">
             <a class="main__detail__btn imdb" href="http://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
             <a class="main__detail__btn back" href="index.html">Back to the Main</a>
@@ -166,13 +174,6 @@ const getMovie = () => {
             <h2 class="main__detail__movie__title">${movie.title}<span class="main__detail__movie__year">${movie.release_date.split('-')[0]}<span></h2>
             <h3 class="main__detail__synopsis__title">줄거리</h3>
             <p class="main__detail__synopsis__param">${movie.overview}</p>
-            <ul class="main__detail__info__lists">
-              <li class="main__detail__info__item"><strong>장르:</strong> ${movie.genres[0].name}</li>
-              <li class="main__detail__info__item"><strong>개봉일:</strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li 
-              <li class="main__detail__info__item"><strong>평점:</strong> ${movie.vote_average}</li>
-              <li class="main__detail__info__item"><strong>언어:</strong> ${movie.spoken_languages[0].name}</li>
-              <li class="main__detail__info__item"><strong>상영시간:</strong> ${movie.runtime}분</li>
-            </ul>
           </div>
           <div class="main__detail__cast__wrap">
           </div>
@@ -196,11 +197,31 @@ const getMovie = () => {
       let crewOutput = `
         <div class="main__detail__cast__wrap">
           <ul class="main__detail__cast__lists">
-            <li class="main__detail__cast">${cast[0].name}</li>
-            <li class="main__detail__cast">${cast[1].name}</li>
-            <li class="main__detail__cast">${cast[2].name}</li>
-            <li class="main__detail__cast">${cast[3].name}</li>
-            <li class="main__detail__cast">${cast[4].name}</li>
+            <li class="main__detail__cast">
+              <img class="cast__profile"src="${state.profile + cast[0].profile_path}"/>
+              <p class="cast__name">${cast[0].name}</p>
+              <p class="cast__character">${cast[0].character}역</p>
+            </li>
+            <li class="main__detail__cast">
+              <img class="cast__profile"src="${state.profile + cast[1].profile_path}"/>
+              <p class="cast__name">${cast[1].name}</p>
+              <p class="cast__character">${cast[1].character}역</p>
+            </li>
+            <li class="main__detail__cast">
+              <img class="cast__profile"src="${state.profile + cast[2].profile_path}"/>
+              <p class="cast__name">${cast[2].name}</p>
+              <p class="cast__character">${cast[2].character}역</p>
+            </li>
+            <li class="main__detail__cast">
+              <img class="cast__profile"src="${state.profile + cast[3].profile_path}"/>
+              <p class="cast__name">${cast[3].name}</p>
+              <p class="cast__character">${cast[3].character}역</p>
+            </li>
+            <li class="main__detail__cast">
+              <img class="cast__profile"src="${state.profile + cast[4].profile_path}"/>
+              <p class="cast__name">${cast[4].name}</p>
+              <p class="cast__character">${cast[4].character}역</p>
+            </li>
           </ul>
         </div>
       `;
