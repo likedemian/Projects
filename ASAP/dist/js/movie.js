@@ -22,7 +22,8 @@ let state = {
   actors: '&with_cast=',
   keyword: '',
   no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png',
-  no_cover: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no_cover_image.png'
+  no_cover: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no_cover_image.png',
+  no_profile: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-profile.png'
 }
 
 
@@ -150,8 +151,7 @@ const getMovie = () => {
       console.log(response);
       let movie = response.data;
 
-      let detailOutput = `
-      <div class="main__detail__main__wrap">
+      let detailMainOutput = `
         <div class="main__detail__movie__wrap">
           <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" class="main__detail__poster">
         </div>
@@ -166,19 +166,17 @@ const getMovie = () => {
           <a class="main__detail__btn imdb" href="http://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
           <a class="main__detail__btn back" href="index.html">Back to the Main</a>
         </div>
-      </div>
-
-      <div class="main__detail__sub__wrap">  
+      `;
+      let detailSubOutput = `
         <div class="main__detail__synopsis__wrap">
           <h2 class="main__detail__movie__title">${movie.title}<span class="main__detail__movie__year">${movie.release_date.split('-')[0]}<span></h2>
-          <h3 class="main__detail__synopsis__title">줄거리</h3>
+          <h3 class="main__detail__synopsis__title">SYNOPSIS</h3>
           <p class="main__detail__synopsis__param">${movie.overview}</p>
         </div>
-        <div class="main__detail__cast__wrap"></div>
-      </div>
       `;
 
-      $('.main__detail__container').html(detailOutput);
+      $('.main__detail__main__wrap').html(detailMainOutput);
+      $('.main__detail__sub__wrap').html(detailSubOutput);
     })
 
     .catch((err) => {
@@ -191,40 +189,60 @@ const getMovie = () => {
 
   axios.get('http://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&append_to_response=movie_credits')
     .then((response) => {
-      console.log(response);
+      let creditData = response.data;
       let cast = response.data.cast;
       let crew = response.data.crew;
-      // console.log(crew[0].name);
-      let crewOutput = `
-        <ul class="main__detail__credits__lists">
-          <li class="main__detail__credits">
-            <img class="crew__profile"src="${state.profile + crew[0].profile_path}"/>
-            <p class="crew__name">${crew[0].name}</p>
-            <p class="crew__job">${crew[0].job}</p>
-          </li>
-          <li class="main__detail__credits">
-            <img class="cast__profile"src="${state.profile + cast[0].profile_path}"/>
-            <p class="cast__name">${cast[0].name}</p>
-            <p class="cast__character">${cast[0].character}역</p>
-          </li>
-          <li class="main__detail__credits">
-            <img class="cast__profile"src="${state.profile + cast[1].profile_path}"/>
-            <p class="cast__name">${cast[1].name}</p>
-            <p class="cast__character">${cast[1].character}역</p>
-          </li>
-          <li class="main__detail__credits">
-            <img class="cast__profile"src="${state.profile + cast[2].profile_path}"/>
-            <p class="cast__name">${cast[2].name}</p>
-            <p class="cast__character">${cast[2].character}역</p>
-          </li>
-          <li class="main__detail__credits">
-            <img class="cast__profile"src="${state.profile + cast[3].profile_path}"/>
-            <p class="cast__name">${cast[3].name}</p>
-            <p class="cast__character">${cast[3].character}역</p>
-          </li>
-        </ul>
+      let crewData = [];
+      let crewLength = response.data.crew.length
+      console.log(response);
+      console.log(crewLength);
+      console.log(crewData);
+
+      for(let i = 0; i <crewLength; i++){
+        if(creditData.crew[i].job === 'Director') {
+          crewData = creditData.crew[i];
+          break;
+        }
+      }
+        if ( !!crewData.profile_path ) {
+          crewData.profile_path = state.profile + crewData.profile_path
+        } else {
+          crewData.profile_path = state.no_profile;
+        }
+        
+      let creditsOutput = `
+        <div class="main__detail__casting__wrap">
+          <h4 class="main__detail__credits__info">CAST</h4>
+          <ul class="main__detail__credits__lists">
+            <li class="main__detail__credits">
+              <img class="crew__profile"src="${crewData.profile_path}"/>
+              <p class="crew__name">${crewData.name}</p>
+              <p class="crew__job">${crewData.job}</p>
+            </li>
+            <li class="main__detail__credits">
+              <img class="cast__profile"src="${state.profile + cast[0].profile_path === state.profile+'null' ? state.no_profile : state.profile + cast[0].profile_path}"/>
+              <p class="cast__name">${cast[0].name}</p>
+              <p class="cast__character">${cast[0].character}역</p>
+            </li>
+            <li class="main__detail__credits">
+              <img class="cast__profile"src="${state.profile + cast[1].profile_path === state.profile+'null' ? state.no_profile : state.profile + cast[1].profile_path}"/>
+              <p class="cast__name">${cast[1].name}</p>
+              <p class="cast__character">${cast[1].character}역</p>
+            </li>
+            <li class="main__detail__credits">
+              <img class="cast__profile"src="${state.profile + cast[2].profile_path === state.profile+'null' ? state.no_profile : state.profile + cast[2].profile_path}"/>
+              <p class="cast__name">${cast[2].name}</p>
+              <p class="cast__character">${cast[2].character}역</p>
+            </li>
+            <li class="main__detail__credits">
+              <img class="cast__profile"src="${state.profile + cast[3].profile_path === state.profile+'null' ? state.no_profile : state.profile + cast[3].profile_path}"/>
+              <p class="cast__name">${cast[3].name}</p>
+              <p class="cast__character">${cast[3].character}역</p>
+            </li>
+          </ul>
+        </div>
       `;
-      $('.main__detail__cast__wrap').html(crewOutput);
+      $('.main__detail__credits__wrap').html(creditsOutput);
     })
 
 

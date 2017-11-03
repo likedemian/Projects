@@ -16,7 +16,7 @@ $(document).on("mouseover", ".detail__button", function() {
 
 
 // --------------------------------------------------- 스르륵 나타나는 함수
-$('.main__detail__credits').ready(function() {
+$(document).on('mousemove', function() {
     $('.main__detail__credits').each(function(i) {
       setTimeout(function() {
         $('.main__detail__credits').eq(i).addClass('is-showing');

@@ -2,7 +2,7 @@
   position: relative
   margin: 0 auto
   width: 100%
-  height: 600px
+  height: 650px
   // top: 40%
   transform: translateY(10%)
   box-shadow: 0 8px 32px rgba(0,0,0,0.5)
@@ -60,7 +60,7 @@
   background-color: $sub-color
   float: right
   width: 70%
-  height: 100%
+  height: 60%
 
 .main__detail__synopsis__wrap
   width: 90%
@@ -88,6 +88,7 @@
     size: 1.25rem
     weight: 700
   padding: 1rem 0 0.5rem 0
+  letter-spacing: 2px
 
 
 .main__detail__synopsis__param
@@ -104,29 +105,58 @@
 
 
 
+
+
+
 .main__detail__credits__wrap
-  width: 95%
+  float: right
+  width: 70%
+  height: 40%
   margin: 0 auto
+  background-color: $sub-color
+
+
+
+.main__detail__casting__wrap
+  width: 100%
+  height: 100%
+  margin: 0 auto
+  font-size: 0.9rem
+
+.main__detail__credits__info
+  width: 90%
+  margin: 0 auto
+  padding: 1rem 0 0.5rem 0
+  color: $main-color
+  font: 
+    size: 1.25rem
+    weight: 700
+  letter-spacing: 2px
+
 
 .main__detail__credits__lists
-  float: left
+  // float: left
   margin: 0 auto
 
 .main__detail__credits
-  width: 100px
+  vertical-align: middle
+  width: 105px
   height: 150px
   float: left
   margin: 0.75rem
   text-align: center
   opacity: 0
-  transform: translateX(-30px)
+  transform: translateX(-15px)
   transition: 1s ease-in-out
+  &:first-child
+    width: 140px
+    border-right: 1px solid #fff
   &.is-showing
     opacity: 1
     transform: translateX(0px)
-  &:first-child
-    width: 150px
-    border-right: 1px solid #fff
+
+
+
 
 .cast__profile, .crew__profile
   box-shadow: 0 4px 8px rgba(0,0,0,0.75)
