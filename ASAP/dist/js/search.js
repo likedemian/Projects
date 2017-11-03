@@ -11,3 +11,14 @@ $(document).on('click', '.header__search__result', function() {
     'display': 'none'
   });
 });
+
+
+
+$(document).on('click', '.header__search__result__wrap', function() {
+  console.log('클릭했삼~!');
+  $(this).css({
+    'display': 'none'
+  });
+});
+
+

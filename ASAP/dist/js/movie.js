@@ -72,17 +72,30 @@ $(document).ready(() => {
 const searchMovies = (searchText) => {
   axios.get('https://api.themoviedb.org/3/search/movie?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&vote_count.gte=100&query=' + searchText)
     .then((response) => {
+
       console.log(response);
       let movies = response.data.results
       let searchOutput = '';
       $.each(movies, (index, movie) => {
+
+
         searchOutput += `
           <div class="header__search__result">
-            <a onclick="movieSelected('${movie.id}')" class="header__search__link" href="#"><h5 class="header__search__title">${movie.title}</h5></a>
+            <a onclick="movieSelected('${movie.id}')" class="header__search__link" href="#">
+              <h6 class="header__search__title">${movie.title}</h6>
+              <span class="header__search__year">${movie.release_date.split('-')[0]}</span>
+            </a>
           </div>
         `;
       });
+
+
+
+
       $('.header__search__result__wrap').html(searchOutput);
+
+
+
     })
     .catch((err) => {
       console.log(err);
@@ -94,11 +107,21 @@ const searchMovies = (searchText) => {
 
 
 
+
+
+
+
+
 const movieSelected = (id) => {
   sessionStorage.setItem('movieId', id);
   window.location = 'movie.html';
   return false
 }
+
+
+
+
+
 
 
 

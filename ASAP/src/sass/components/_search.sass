@@ -29,22 +29,35 @@
   top: 58px
   right: 97px
   background-color: #efefef
-  opacity: 0.5
+  opacity: 0.75
   z-index: 10
   overflow: scroll
 
 
 
 .header__search__result
+  display: block
+
+.header__search__result
   &:nth-child(1)
     margin-top: 1.5rem
-  
-
-
-.header__search__title
-  margin: 0.75rem
-
 
 
 .header__search__link
   text-decoration: none
+  color: $sub-color
+  &:active
+    color: $main-color
+
+
+.header__search__title
+  margin: 0.75rem
+  display: inline-block
+  width: 65%
+  // white-space: nowrap
+  word-wrap: break-word
+
+
+.header__search__year
+  font-size: 0.75rem
+  vertical-align: middle

@@ -1,11 +1,11 @@
-$(document).on("mouseover", ".main__movie-list__wrap", function() {
+$(document).on("mouseover", ".detail__button", function() {
     $(this).css({
-      opacity: "0.75",
+      opacity: "0.5",
       transition: "0.25s",
     })
   }),
 
-  $(document).on("mouseleave", ".main__movie-list__wrap", function() {
+  $(document).on("mouseleave", ".detail__button", function() {
     $(this).css({
       opacity: "1",
       transition: "0.25s",

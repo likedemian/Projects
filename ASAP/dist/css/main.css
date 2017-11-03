@@ -57,9 +57,9 @@ body {
 
 .header__container {
   width: 100%;
-  height: 3rem;
+  height: 2.5rem;
   background-color: #EFEFEF;
-  margin: 1rem auto;
+  padding: 1.25rem 0;
   z-index: 4; }
 
 .header__menu__container {
@@ -122,18 +122,31 @@ body {
   top: 58px;
   right: 97px;
   background-color: #efefef;
-  opacity: 0.5;
+  opacity: 0.75;
   z-index: 10;
   overflow: scroll; }
+
+.header__search__result {
+  display: block; }
 
 .header__search__result:nth-child(1) {
   margin-top: 1.5rem; }
 
-.header__search__title {
-  margin: 0.75rem; }
-
 .header__search__link {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #222a35; }
+  .header__search__link:active {
+    color: #37ecba; }
+
+.header__search__title {
+  margin: 0.75rem;
+  display: inline-block;
+  width: 65%;
+  word-wrap: break-word; }
+
+.header__search__year {
+  font-size: 0.75rem;
+  vertical-align: middle; }
 
 html {
   background: #efefef;
@@ -250,7 +263,7 @@ html {
   position: absolute;
   top: 70%;
   left: 10%;
-  width: 65%;
+  width: 50%;
   font-size: 0.85rem;
   text-indent: 1rem;
   line-height: 1.7;
