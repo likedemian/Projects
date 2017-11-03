@@ -3,6 +3,7 @@ let movieWrap = $('.main__movie__wrap');
 let movieCoverWrap = $('.swiper-wrapper');
 let searchResultWrap;
 
+
 let API = '?api_key=64391ca210dbae0d44b0a622177ef8d3';
 let URL = '';
 let state = {
@@ -18,6 +19,7 @@ let state = {
   popularity: '&primary_release_year=2016&vote_count.gte=50',
   korean: '&language=ko',
   pages: '&page=',
+  actors: '&with_cast=',
   keyword: '',
   no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png',
   no_cover: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no_cover_image.png'
@@ -101,12 +103,7 @@ const searchMovies = (searchText) => {
         `;
       });
 
-
-
-
       $('.header__search__result__wrap').html(searchOutput);
-
-
 
     })
     .catch((err) => {
@@ -126,10 +123,10 @@ const searchMovies = (searchText) => {
 
 const movieSelected = (id) => {
   sessionStorage.setItem('movieId', id);
+  sessionStorage.setItem('personId', id);
   window.location = 'movie.html';
   return false
 }
-
 
 
 
@@ -147,31 +144,37 @@ const getMovie = () => {
   let movieId = sessionStorage.getItem('movieId');
 
   axios.get('http://api.themoviedb.org/3/movie/' + movieId + '?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko')
+
+
+
     .then((response) => {
       console.log(response);
       let movie = response.data;
+
       let detailOutput = `
-        <div class="">
-          <div class="">
-            <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" class="">
+        <div class="main__detail__main__wrap">
+          <div class="main__detail__movie__wrap">
+            <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" class="main__detail__poster">
           </div>
-          <div class="">
-            <ul class="">
-              <li class=""><strong>장르:</strong> ${movie.genres[0].name}</li>
-              <li class=""><strong>개봉일:</strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li>
-              <li class=""><strong>평점:</strong> ${movie.vote_average}</li>
-              <li class=""><strong>언어:</strong> ${movie.spoken_languages[0].name}</li>
-              <li class=""><strong>상영시간:</strong> ${movie.runtime}분</li>
-            </ul>
+          <div class="main__detail__btn__wrap">
+            <a class="main__detail__btn imdb" href="http://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
+            <a class="main__detail__btn back" href="index.html">Back to the Main</a>
           </div>
         </div>
-        <div class="">
-          <div class="">
-            <h3>Synopsis</h3>
-            ${movie.overview}
-            <hr>
-            <a href="http://imdb.com/title/${movie.imdb_id}" target="_blank" class="">View IMDB</a>
-            <a href="index.html" class="">Go back to search</a>
+        <div class="main__detail__sub__wrap">
+          <div class="main__detail__synopsis__wrap">
+            <h2 class="main__detail__movie__title">${movie.title}<span class="main__detail__movie__year">${movie.release_date.split('-')[0]}<span></h2>
+            <h3 class="main__detail__synopsis__title">줄거리</h3>
+            <p class="main__detail__synopsis__param">${movie.overview}</p>
+            <ul class="main__detail__info__lists">
+              <li class="main__detail__info__item"><strong>장르:</strong> ${movie.genres[0].name}</li>
+              <li class="main__detail__info__item"><strong>개봉일:</strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li 
+              <li class="main__detail__info__item"><strong>평점:</strong> ${movie.vote_average}</li>
+              <li class="main__detail__info__item"><strong>언어:</strong> ${movie.spoken_languages[0].name}</li>
+              <li class="main__detail__info__item"><strong>상영시간:</strong> ${movie.runtime}분</li>
+            </ul>
+          </div>
+          <div class="main__detail__cast__wrap">
           </div>
         </div>
       `;
@@ -180,7 +183,36 @@ const getMovie = () => {
     .catch((err) => {
       console.log(err);
     })
+
+
+
+
+
+  axios.get('http://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&append_to_response=movie_credits')
+    .then((response) => {
+      console.log(response);
+      let cast = response.data.cast;
+      // console.log(crew[0].name);
+      let crewOutput = `
+        <div class="main__detail__cast__wrap">
+          <ul class="main__detail__cast__lists">
+            <li class="main__detail__cast">${cast[0].name}</li>
+            <li class="main__detail__cast">${cast[1].name}</li>
+            <li class="main__detail__cast">${cast[2].name}</li>
+            <li class="main__detail__cast">${cast[3].name}</li>
+            <li class="main__detail__cast">${cast[4].name}</li>
+          </ul>
+        </div>
+      `;
+      $('.main__detail__cast__wrap').html(crewOutput);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
 }
+
+
 
 
 
@@ -241,6 +273,11 @@ const getMovies = () => {
       console.log(err);
     });
 };
+
+
+
+
+
 
 
 init();
