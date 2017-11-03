@@ -99,7 +99,7 @@ body {
   margin-right: 3rem; }
 
 .header__search-bar {
-  width: 350px;
+  width: 300px;
   font-size: 1.5rem;
   border: 0;
   border-bottom: 1.5px solid #181818;
@@ -117,10 +117,10 @@ body {
 .header__search__result__wrap {
   display: none;
   position: absolute;
-  width: 350px;
-  height: 502px;
+  width: 302px;
+  height: 500px;
   top: 58px;
-  right: 98px;
+  right: 97px;
   background-color: #efefef;
   opacity: 0.75;
   z-index: 10;
@@ -244,7 +244,8 @@ html {
 .main__cover__image {
   width: 100%;
   height: 576px;
-  object-fit: cover; }
+  object-fit: cover;
+  object-position: top; }
 
 .main__cover__title {
   position: absolute;
@@ -374,7 +375,8 @@ html {
   word-wrap: normal;
   text-overflow: ellipsis;
   overflow: hidden;
-  padding: 0.5rem 0; }
+  padding: 0.5rem 0;
+  margin-bottom: 0.5rem; }
 
 .detail__button {
   width: 100%;

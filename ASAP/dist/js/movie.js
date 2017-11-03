@@ -156,7 +156,7 @@ const getMovie = () => {
           <div class="">
             <ul class="">
               <li class=""><strong>장르:</strong> ${movie.genres[0].name}</li>
-              <li class=""><strong>개봉일:</strong> ${movie.release_date}</li>
+              <li class=""><strong>개봉일:</strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li>
               <li class=""><strong>평점:</strong> ${movie.vote_average}</li>
               <li class=""><strong>언어:</strong> ${movie.spoken_languages[0].name}</li>
               <li class=""><strong>상영시간:</strong> ${movie.runtime}분</li>
@@ -213,11 +213,12 @@ const getMovies = () => {
           <div class="swiper-slide"> 
             <img src="${state.backdrop+movie.backdrop_path === state.backdrop+'null' ? state.no_cover: state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
             <h2 class="main__cover__title">${movie.title}</h2>
-            <span class="main__cover__release">개봉일 : ${movie.release_date}</span>
+            <span class="main__cover__release">개봉일 : ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</span>
             <span class="main__cover__rating">평점 : ${movie.vote_average}</span>
             <p class="main__cover__synopsis">${movie.overview}</p>
           </div>
-          `
+        `;
+
         listOutput += `
           <li class="main__movie-list__wrap">
             <div class="movie__item__wrap">
@@ -227,7 +228,7 @@ const getMovies = () => {
               </div>
               <div class="movie__info__wrap">
                 <h3 class="movie__title">${movie.title}</h3>
-                <p class="movie__genre">${movie.genre_ids.join(' , ').replace('28', '액션').replace('12', '모험').replace('16', '애니메이션').replace('35', '코미디').replace('80', '범죄').replace('99', '다큐멘터리').replace('18', '드라마').replace('10751', '가족').replace('14', '판타지').replace('36', '역사').replace('27', '공포').replace('10402', '음악').replace('9648', '미스터리').replace('10749', '로맨스').replace('878', 'SF').replace('10770', 'TV 영화').replace('53', '스릴러').replace('10752', '전쟁').replace('37', '서부')}</p>
+                <p class="movie__genre">${movie.genre_ids.join(', ').replace('28', '액션').replace('12', '모험').replace('16', '애니메이션').replace('35', '코미디').replace('80', '범죄').replace('99', '다큐멘터리').replace('18', '드라마').replace('10751', '가족').replace('14', '판타지').replace('36', '역사').replace('27', '공포').replace('10402', '음악').replace('9648', '미스터리').replace('10749', '로맨스').replace('878', 'SF').replace('10770', 'TV 영화').replace('53', '스릴러').replace('10752', '전쟁').replace('37', '서부')}</p>
                 <button class="detail__button">
                   <p class="ripple btn__param">More Info</p>
                 </button>
