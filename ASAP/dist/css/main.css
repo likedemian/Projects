@@ -99,7 +99,7 @@ body {
   margin-right: 3rem; }
 
 .header__search-bar {
-  width: 250px;
+  width: 350px;
   font-size: 1.5rem;
   border: 0;
   border-bottom: 1.5px solid #181818;
@@ -117,20 +117,28 @@ body {
 .header__search__result__wrap {
   display: none;
   position: absolute;
-  width: 252px;
-  height: 400px;
+  width: 350px;
+  height: 502px;
   top: 58px;
-  right: 97px;
+  right: 98px;
   background-color: #efefef;
   opacity: 0.75;
   z-index: 10;
   overflow: scroll; }
 
 .header__search__result {
-  display: block; }
+  display: block;
+  margin-bottom: 1rem; }
+  .header__search__result:nth-child(1) {
+    margin-top: 1.5rem; }
+  .header__search__result:hover {
+    background-color: #37ecba; }
 
-.header__search__result:nth-child(1) {
-  margin-top: 1.5rem; }
+.header__search__image {
+  padding: 0.5rem;
+  display: inline-block;
+  width: 15%;
+  vertical-align: middle; }
 
 .header__search__link {
   text-decoration: none;
@@ -139,14 +147,15 @@ body {
     color: #37ecba; }
 
 .header__search__title {
-  margin: 0.75rem;
   display: inline-block;
-  width: 65%;
+  margin: 0.5rem;
+  width: 50%;
+  font-size: 0.9rem;
   word-wrap: break-word; }
 
 .header__search__year {
   font-size: 0.75rem;
-  vertical-align: middle; }
+  color: #aaa; }
 
 html {
   background: #efefef;

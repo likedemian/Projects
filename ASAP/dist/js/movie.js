@@ -10,6 +10,7 @@ let state = {
   discover: 'https://api.themoviedb.org/3/discover/movie',
   search: 'https://api.themoviedb.org/3/search/movie',
   genres: 'http://api.themoviedb.org/3/genre/movie/list',
+  profile: 'https://image.tmdb.org/t/p/w185',
   poster_small: 'https://image.tmdb.org/t/p/w342',
   backdrop: "https://image.tmdb.org/t/p/w1280",
   top_rated: '&sort_by=vote_average.desc&vote_count.gte=1000',
@@ -20,8 +21,10 @@ let state = {
   keyword: '',
   no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png',
   no_cover: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no_cover_image.png'
-  // profile: 'https://image.tmdb.org/t/p/w185',
 }
+
+
+
 
 
 
@@ -31,6 +34,8 @@ const init = () => {
   bind();
   getMovies()
 }
+
+
 
 
 
@@ -54,6 +59,8 @@ const bind = () => {
 
 
 
+
+
 $(document).ready(() => {
   $('#header__search-form').on('submit', (e) => {
     let searchText = $('#header__search-text').val();
@@ -61,6 +68,8 @@ $(document).ready(() => {
     e.preventDefault();
   });
 });
+
+
 
 
 
@@ -80,12 +89,13 @@ const searchMovies = (searchText) => {
 
 
         searchOutput += `
-          <div class="header__search__result">
-            <a onclick="movieSelected('${movie.id}')" class="header__search__link" href="#">
-              <h6 class="header__search__title">${movie.title}</h6>
-              <span class="header__search__year">${movie.release_date.split('-')[0]}</span>
-            </a>
-          </div>
+          <a onclick="movieSelected('${movie.id}')" class="header__search__link" href="#">
+            <div class="header__search__result">
+              <img src="${state.profile+movie.poster_path === state.profile+'null'?state.no_poster:state.profile+movie.poster_path}" alt="${movie.title}" class="header__search__image">
+                <h6 class="header__search__title">${movie.title}</h6>
+                <span class="header__search__year">${movie.release_date.split('-')[0]}</span>
+            </div>
+          </a>
         `;
       });
 
