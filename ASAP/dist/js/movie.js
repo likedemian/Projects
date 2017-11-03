@@ -123,7 +123,6 @@ const searchMovies = (searchText) => {
 
 const movieSelected = (id) => {
   sessionStorage.setItem('movieId', id);
-  sessionStorage.setItem('personId', id);
   window.location = 'movie.html';
   return false
 }
@@ -152,35 +151,36 @@ const getMovie = () => {
       let movie = response.data;
 
       let detailOutput = `
-        <div class="main__detail__main__wrap">
-          <div class="main__detail__movie__wrap">
-            <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" class="main__detail__poster">
-          </div>
-          <ul class="main__detail__info__lists">
-            <li class="main__detail__info__item"><strong>개봉일: </strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li>
-            <li class="main__detail__info__item"><strong>장르: </strong> ${movie.genres[0].name}</li>
-            <li class="main__detail__info__item"><strong>평점: </strong>${movie.vote_average}/10</li>
-            <li class="main__detail__info__item"><strong>언어: </strong> ${movie.spoken_languages[0].name}</li>
-            <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime}분</li>
-          </ul>
+      <div class="main__detail__main__wrap">
+        <div class="main__detail__movie__wrap">
+          <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" class="main__detail__poster">
+        </div>
+        <ul class="main__detail__info__lists">
+          <li class="main__detail__info__item"><strong>개봉일: </strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li>
+          <li class="main__detail__info__item"><strong>장르: </strong> ${movie.genres[0].name}</li>
+          <li class="main__detail__info__item"><strong>평점: </strong>${movie.vote_average}/10</li>
+          <li class="main__detail__info__item"><strong>언어: </strong> ${movie.spoken_languages[0].name}</li>
+          <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime}분</li>
+        </ul>
+        <div class="main__detail__btn__wrap">
+          <a class="main__detail__btn imdb" href="http://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
+          <a class="main__detail__btn back" href="index.html">Back to the Main</a>
+        </div>
+      </div>
 
-          <div class="main__detail__btn__wrap">
-            <a class="main__detail__btn imdb" href="http://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
-            <a class="main__detail__btn back" href="index.html">Back to the Main</a>
-          </div>
+      <div class="main__detail__sub__wrap">  
+        <div class="main__detail__synopsis__wrap">
+          <h2 class="main__detail__movie__title">${movie.title}<span class="main__detail__movie__year">${movie.release_date.split('-')[0]}<span></h2>
+          <h3 class="main__detail__synopsis__title">줄거리</h3>
+          <p class="main__detail__synopsis__param">${movie.overview}</p>
         </div>
-        <div class="main__detail__sub__wrap">
-          <div class="main__detail__synopsis__wrap">
-            <h2 class="main__detail__movie__title">${movie.title}<span class="main__detail__movie__year">${movie.release_date.split('-')[0]}<span></h2>
-            <h3 class="main__detail__synopsis__title">줄거리</h3>
-            <p class="main__detail__synopsis__param">${movie.overview}</p>
-          </div>
-          <div class="main__detail__cast__wrap">
-          </div>
-        </div>
+        <div class="main__detail__cast__wrap"></div>
+      </div>
       `;
+
       $('.main__detail__container').html(detailOutput);
     })
+
     .catch((err) => {
       console.log(err);
     })
@@ -193,45 +193,45 @@ const getMovie = () => {
     .then((response) => {
       console.log(response);
       let cast = response.data.cast;
+      let crew = response.data.crew;
       // console.log(crew[0].name);
       let crewOutput = `
-        <div class="main__detail__cast__wrap">
-          <ul class="main__detail__cast__lists">
-            <li class="main__detail__cast">
-              <img class="cast__profile"src="${state.profile + cast[0].profile_path}"/>
-              <p class="cast__name">${cast[0].name}</p>
-              <p class="cast__character">${cast[0].character}역</p>
-            </li>
-            <li class="main__detail__cast">
-              <img class="cast__profile"src="${state.profile + cast[1].profile_path}"/>
-              <p class="cast__name">${cast[1].name}</p>
-              <p class="cast__character">${cast[1].character}역</p>
-            </li>
-            <li class="main__detail__cast">
-              <img class="cast__profile"src="${state.profile + cast[2].profile_path}"/>
-              <p class="cast__name">${cast[2].name}</p>
-              <p class="cast__character">${cast[2].character}역</p>
-            </li>
-            <li class="main__detail__cast">
-              <img class="cast__profile"src="${state.profile + cast[3].profile_path}"/>
-              <p class="cast__name">${cast[3].name}</p>
-              <p class="cast__character">${cast[3].character}역</p>
-            </li>
-            <li class="main__detail__cast">
-              <img class="cast__profile"src="${state.profile + cast[4].profile_path}"/>
-              <p class="cast__name">${cast[4].name}</p>
-              <p class="cast__character">${cast[4].character}역</p>
-            </li>
-          </ul>
-        </div>
+        <ul class="main__detail__credits__lists">
+          <li class="main__detail__credits">
+            <img class="crew__profile"src="${state.profile + crew[0].profile_path}"/>
+            <p class="crew__name">${crew[0].name}</p>
+            <p class="crew__job">${crew[0].job}</p>
+          </li>
+          <li class="main__detail__credits">
+            <img class="cast__profile"src="${state.profile + cast[0].profile_path}"/>
+            <p class="cast__name">${cast[0].name}</p>
+            <p class="cast__character">${cast[0].character}역</p>
+          </li>
+          <li class="main__detail__credits">
+            <img class="cast__profile"src="${state.profile + cast[1].profile_path}"/>
+            <p class="cast__name">${cast[1].name}</p>
+            <p class="cast__character">${cast[1].character}역</p>
+          </li>
+          <li class="main__detail__credits">
+            <img class="cast__profile"src="${state.profile + cast[2].profile_path}"/>
+            <p class="cast__name">${cast[2].name}</p>
+            <p class="cast__character">${cast[2].character}역</p>
+          </li>
+          <li class="main__detail__credits">
+            <img class="cast__profile"src="${state.profile + cast[3].profile_path}"/>
+            <p class="cast__name">${cast[3].name}</p>
+            <p class="cast__character">${cast[3].character}역</p>
+          </li>
+        </ul>
       `;
       $('.main__detail__cast__wrap').html(crewOutput);
     })
+
+
     .catch((err) => {
       console.log(err);
-    })
-
-}
+    });
+  }
 
 
 
@@ -280,7 +280,7 @@ const getMovies = () => {
                 <h3 class="movie__title">${movie.title}</h3>
                 <p class="movie__genre">${movie.genre_ids.join(', ').replace('28', '액션').replace('12', '모험').replace('16', '애니메이션').replace('35', '코미디').replace('80', '범죄').replace('99', '다큐멘터리').replace('18', '드라마').replace('10751', '가족').replace('14', '판타지').replace('36', '역사').replace('27', '공포').replace('10402', '음악').replace('9648', '미스터리').replace('10749', '로맨스').replace('878', 'SF').replace('10770', 'TV 영화').replace('53', '스릴러').replace('10752', '전쟁').replace('37', '서부')}</p>
                 <button class="detail__button">
-                  <p class="ripple btn__param">More Info</p>
+                  <p onclick="movieSelected('${movie.id}')" class="ripple btn__param">More Info</p>
                 </button>
               </div>
             </div>
