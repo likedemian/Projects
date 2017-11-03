@@ -30,6 +30,8 @@ let state = {
 
 
 
+
+
 const init = () => {
   bind();
   getMovies()
@@ -187,11 +189,6 @@ const getMovie = () => {
 
 
 
-
-
-
-
-
 const getMovies = () => {
   let urls = {
     trending: state.discover + API + state.korean + state.popularity + state.pages + page,
@@ -223,7 +220,7 @@ const getMovies = () => {
           <li class="main__movie-list__wrap">
             <div class="movie__item__wrap">
               <div class="movie__poster__wrap">
-                <img class="movie__poster" src="${(state.poster_small + movie.poster_path === state.poster_small+'null') ? state.no_poster: state.poster_small + movie.poster_path}" alt="${movie.title}" />
+                <img class="movie__poster" src="${(state.profile + movie.poster_path === state.profile+'null') ? state.no_poster: state.profile + movie.poster_path}" alt="${movie.title}" />
                 <span class="movie__rating">${movie.vote_average}</span>
               </div>
               <div class="movie__info__wrap">

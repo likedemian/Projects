@@ -1,3 +1,50 @@
+// ---------------------------------------------------- Hover Function
+
+$(document).on("mouseover", ".detail__button", function() {
+    $(this).css({
+      opacity: "0.5",
+      transition: "0.25s",
+    })
+  }),
+
+  $(document).on("mouseleave", ".detail__button", function() {
+    $(this).css({
+      opacity: "1",
+      transition: "0.25s",
+    })
+  });
+
+
+
+// --------------------------------------------------- Search Function
+
+$('#header__search-text').focus(function() {
+  $('.header__search__result__wrap').css({
+    'display': 'block'
+  });
+});
+
+
+$(document).on('click', '.header__search__result', function() {
+  console.log('클릭했삼~!');
+  $('.header__search__result__wrap').css({
+    'display': 'none'
+  });
+});
+
+
+
+$(document).on('click', '.header__search__result__wrap', function() {
+  console.log('클릭했삼~!');
+  $(this).css({
+    'display': 'none'
+  });
+});
+
+
+
+
+// --------------------------------------------------- Shuffle Letters Function
 /**
  * @name    Shuffle Letters
  * @author    Martin Angelov
@@ -138,3 +185,19 @@
   }
   
 })(jQuery);
+
+
+
+$('.header__logo__text').shuffleLetters()
+
+
+
+
+// --------------------------------------------------- Swiper Function 
+
+var swiper = new Swiper('.swiper-container', {
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
