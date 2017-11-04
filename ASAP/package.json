@@ -1,6 +1,7 @@
 {
   "name": "ASAP",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,10 +12,6 @@
   "dependencies": {
     "axios": "^0.17.0",
     "jquery": "^3.2.1",
-    "jslint-node": "^1.2.4",
-    "moviedb-api": "0.0.3",
     "swiper": "^4.0.3"
-  },
-  "devDependencies": {},
-  "description": ""
+  }
 }
