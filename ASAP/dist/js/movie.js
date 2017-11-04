@@ -4,7 +4,9 @@ let movieCoverWrap = $('.swiper-wrapper');
 let detailMainWrap = $('.main__detail__main__wrap')
 let detailSubWrap = $('.main__detail__sub__wrap');
 let detailCreditslists = $('.main__detail__credits__lists');
+let footerContainer = $('.footer__container');
 let flags = false;
+
 
 
 let API = '?api_key=64391ca210dbae0d44b0a622177ef8d3';
@@ -39,7 +41,9 @@ let state = {
 
 const init = () => {
   bind();
-  getMovies()
+  getMovies();
+  loaders();
+
 }
 
 
@@ -290,6 +294,8 @@ const getMovie = () => {
 
 const getMovies = () => {
   page++;
+  flags = false;
+
   let urls = {
     trending: state.discover + API + state.korean + state.popularity + state.pages + page,
     topRated: state.discover + API + state.korean + state.top_rated + state.pages + page,
@@ -369,9 +375,11 @@ const getMovies = () => {
           </li>
           `;
 
+
+
         setTimeout(function() {
           flags = true;
-        }, 500);
+        }, 1250);
 
       });
       movieCoverWrap.append(coverOutput)
@@ -380,9 +388,25 @@ const getMovies = () => {
     .catch((err) => {
       console.log(err);
     });
+
+
+
 };
 
-
+const loaders = () => {
+  loaderOutput = `
+            <div class="spinner__container">
+              <ul class="spinner__cont">
+                <li class="spinner__module"></li>
+                <li class="spinner__module"></li>
+                <li class="spinner__module"></li>
+                <li class="spinner__module"></li>
+                <li class="spinner__module"></li>
+              </ul>
+            </div>
+          `;
+  $('.main__movie__wrap').prepend(loaderOutput)
+}
 
 
 
