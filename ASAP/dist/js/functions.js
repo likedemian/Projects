@@ -49,6 +49,18 @@ $(document).on('click', '.header__search__result__wrap', function() {
   });
 });
 
+// --------------------------------------------------- list mode
+
+$(document).on('click', '.nav__view__list', function(){
+  $('.main__movie-list__wrap').addClass('list-mode')
+});
+
+$(document).on('click', '.nav__view__module', function(){
+  $('.main__movie-list__wrap').removeClass('list-mode')
+});
+
+$('.main__movie-list__wrap').hasClass('list-mode')? console.log($('.movie__synopsis')): console.log('no');
+
 
 
 

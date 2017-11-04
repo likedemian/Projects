@@ -1,10 +1,10 @@
-let page = 1;
+let page = 0;
 let movieWrap = $('.main__movie__wrap');
 let movieCoverWrap = $('.swiper-wrapper');
 let detailMainWrap = $('.main__detail__main__wrap')
 let detailSubWrap = $('.main__detail__sub__wrap');
 let detailCreditslists = $('.main__detail__credits__lists');
-let searchResultWrap;
+let flags = false;
 
 
 let API = '?api_key=64391ca210dbae0d44b0a622177ef8d3';
@@ -54,7 +54,7 @@ const init = () => {
 const bind = () => {
   $(window).scroll(function() {
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-      ++page && getMovies()
+      flags && getMovies()
     }
   });
 };
@@ -194,7 +194,7 @@ const getMovie = () => {
           <li class="main__detail__info__item"><strong>장르: </strong> ${movie.genres[0].name}</li>
           <li class="main__detail__info__item"><strong>평점: </strong>${movieRating}</li>
           <li class="main__detail__info__item"><strong>언어: </strong> ${movie.spoken_languages[0].name.split('/조선말')}</li>
-          <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime}분</li>
+          <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime === 0? '정보 없음' : movie.runtime+"분"}</li>
         </ul>
         <div class="main__detail__btn__wrap">
           <a class="main__detail__btn imdb" href="http://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
@@ -289,6 +289,7 @@ const getMovie = () => {
 
 
 const getMovies = () => {
+  page++;
   let urls = {
     trending: state.discover + API + state.korean + state.popularity + state.pages + page,
     topRated: state.discover + API + state.korean + state.top_rated + state.pages + page,
@@ -297,6 +298,7 @@ const getMovies = () => {
 
   $.get(urls.topRated)
     .then((response) => {
+      console.log(response);
       let i = 1;
       let movies = response.results;
       let coverOutput = '';
@@ -306,7 +308,7 @@ const getMovies = () => {
 
       $.each(movies, (index, movie) => {
         let movieRating = (movie.vote_average / 2).toFixed(1);
-        
+
 
         if (movieRating >= 5) {
           movieRating = '★★★★★ ' + movieRating
@@ -338,7 +340,6 @@ const getMovies = () => {
         if (movieRating <= 1) {
           movieRating = '☆ ' + movieRating
         }
-        console.log(movieRating);
         coverOutput += `
           <div class="swiper-slide"> 
             <img src="${state.backdrop+movie.backdrop_path === state.backdrop+'null' ? state.no_cover: state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
@@ -359,6 +360,7 @@ const getMovies = () => {
               <div class="movie__info__wrap">
                 <h3 class="movie__title">${movie.title}</h3>
                 <p class="movie__genre">${movie.genre_ids.join(', ').replace('28', '액션').replace('12', '모험').replace('16', '애니메이션').replace('35', '코미디').replace('80', '범죄').replace('99', '다큐멘터리').replace('18', '드라마').replace('10751', '가족').replace('14', '판타지').replace('36', '역사').replace('27', '공포').replace('10402', '음악').replace('9648', '미스터리').replace('10749', '로맨스').replace('878', 'SF').replace('10770', 'TV 영화').replace('53', '스릴러').replace('10752', '전쟁').replace('37', '서부')}</p>
+                <p class="movie__synopsis">${movie.overview}</p>
                 <button class="detail__button">
                   <p onclick="movieSelected('${movie.id}')" class="ripple btn__param">More Info</p>
                 </button>
@@ -366,6 +368,11 @@ const getMovies = () => {
             </div>
           </li>
           `;
+
+        setTimeout(function() {
+          flags = true;
+        }, 500);
+
       });
       movieCoverWrap.append(coverOutput)
       movieWrap.append(listOutput)
