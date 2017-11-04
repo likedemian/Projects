@@ -1,6 +1,7 @@
 let page = 1;
 let movieWrap = $('.main__movie__wrap');
 let movieCoverWrap = $('.swiper-wrapper');
+let detailCreditslists = $('.main__detail__credits__lists');
 let searchResultWrap;
 
 
@@ -19,7 +20,6 @@ let state = {
   popularity: '&primary_release_year=2016&vote_count.gte=50',
   korean: '&language=ko',
   pages: '&page=',
-  actors: '&with_cast=',
   keyword: '',
   no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png',
   no_cover: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no_cover_image.png',
@@ -159,7 +159,7 @@ const getMovie = () => {
           <li class="main__detail__info__item"><strong>개봉일: </strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li>
           <li class="main__detail__info__item"><strong>장르: </strong> ${movie.genres[0].name}</li>
           <li class="main__detail__info__item"><strong>평점: </strong>${movie.vote_average}/10</li>
-          <li class="main__detail__info__item"><strong>언어: </strong> ${movie.spoken_languages[0].name}</li>
+          <li class="main__detail__info__item"><strong>언어: </strong> ${movie.spoken_languages[0].name.split('/조선말')}</li>
           <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime}분</li>
         </ul>
         <div class="main__detail__btn__wrap">
@@ -189,69 +189,66 @@ const getMovie = () => {
 
   axios.get('http://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&append_to_response=movie_credits')
     .then((response) => {
-      let creditData = response.data;
+      let creditsData = response.data;
+      
       let cast = response.data.cast;
+      let castData = [];
+      let castOutput = '';
+      
       let crew = response.data.crew;
       let crewData = [];
       let crewLength = response.data.crew.length
-      console.log(response);
-      console.log(crewLength);
-      console.log(crewData);
+      
 
-      for(let i = 0; i <crewLength; i++){
-        if(creditData.crew[i].job === 'Director') {
-          crewData = creditData.crew[i];
+
+
+      for (let i = 0; i < crewLength; i++) {
+        if (crew[i].job === 'Director') {
+          crewData = crew[i];
           break;
         }
+      };
+
+      if (!!crewData.profile_path) {
+        crewData.profile_path = state.profile + crewData.profile_path
+      } else {
+        crewData.profile_path = state.no_profile;
       }
-        if ( !!crewData.profile_path ) {
-          crewData.profile_path = state.profile + crewData.profile_path
+
+      for (let i = 0; i < 4; i++) {
+        if (!!creditsData.cast[i].profile_path) {
+          creditsData.cast[i].profile_path = state.profile + creditsData.cast[i].profile_path;
         } else {
-          crewData.profile_path = state.no_profile;
+          creditsData.cast[i].profile_path = $store.state.url_noprofile;
         }
-        
-      let creditsOutput = `
-        <div class="main__detail__casting__wrap">
-          <h4 class="main__detail__credits__info">CAST</h4>
-          <ul class="main__detail__credits__lists">
-            <li class="main__detail__credits">
-              <img class="crew__profile"src="${crewData.profile_path}"/>
-              <p class="crew__name">${crewData.name}</p>
-              <p class="crew__job">${crewData.job}</p>
-            </li>
-            <li class="main__detail__credits">
-              <img class="cast__profile"src="${state.profile + cast[0].profile_path === state.profile+'null' ? state.no_profile : state.profile + cast[0].profile_path}"/>
-              <p class="cast__name">${cast[0].name}</p>
-              <p class="cast__character">${cast[0].character}역</p>
-            </li>
-            <li class="main__detail__credits">
-              <img class="cast__profile"src="${state.profile + cast[1].profile_path === state.profile+'null' ? state.no_profile : state.profile + cast[1].profile_path}"/>
-              <p class="cast__name">${cast[1].name}</p>
-              <p class="cast__character">${cast[1].character}역</p>
-            </li>
-            <li class="main__detail__credits">
-              <img class="cast__profile"src="${state.profile + cast[2].profile_path === state.profile+'null' ? state.no_profile : state.profile + cast[2].profile_path}"/>
-              <p class="cast__name">${cast[2].name}</p>
-              <p class="cast__character">${cast[2].character}역</p>
-            </li>
-            <li class="main__detail__credits">
-              <img class="cast__profile"src="${state.profile + cast[3].profile_path === state.profile+'null' ? state.no_profile : state.profile + cast[3].profile_path}"/>
-              <p class="cast__name">${cast[3].name}</p>
-              <p class="cast__character">${cast[3].character}역</p>
-            </li>
-          </ul>
-        </div>
+        castData.push(creditsData.cast[i]);
+      }
+
+      let crewOutput = `
+      <li class="main__detail__credits">
+        <img class="crew__profile"src="${crewData.profile_path}"/>
+        <p class="crew__name">${crewData.name}</p>
+        <p class="crew__job">${crewData.job}</p>
+      </li>
       `;
-      $('.main__detail__credits__wrap').html(creditsOutput);
+
+      $.each(castData, (index, credit) => {
+        console.log(credit);
+        castOutput += `
+            <li class="main__detail__credits">
+              <img class="cast__profile"src="${credit.profile_path}"/>
+              <p class="cast__name">${credit.name}</p>
+              <p class="cast__character">${credit.character}역</p>
+            </li>
+      `;
+      })
+      detailCreditslists.append(crewOutput);
+      detailCreditslists.append(castOutput);
     })
-
-
     .catch((err) => {
       console.log(err);
     });
-  }
-
-
+}
 
 
 
@@ -273,10 +270,12 @@ const getMovies = () => {
       let movies = response.results;
       let coverOutput = '';
       let listOutput = '';
-      console.log(response);
+      // console.log(response);
+      // console.log(movies);
 
 
       $.each(movies, (index, movie) => {
+        // console.log(movie);
         coverOutput += `
           <div class="swiper-slide"> 
             <img src="${state.backdrop+movie.backdrop_path === state.backdrop+'null' ? state.no_cover: state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
