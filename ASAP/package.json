@@ -12,7 +12,11 @@
   "dependencies": {
     "axios": "^0.17.0",
     "jquery": "^3.2.1",
+    "jslint-node": "^1.2.4",
     "moviedb-api": "0.0.3",
     "swiper": "^4.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.10.0"
   }
 }

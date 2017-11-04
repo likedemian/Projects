@@ -1,6 +1,8 @@
 let page = 1;
 let movieWrap = $('.main__movie__wrap');
 let movieCoverWrap = $('.swiper-wrapper');
+let detailMainWrap = $('.main__detail__main__wrap')
+let detailSubWrap = $('.main__detail__sub__wrap');
 let detailCreditslists = $('.main__detail__credits__lists');
 let searchResultWrap;
 
@@ -124,7 +126,7 @@ const searchMovies = (searchText) => {
 
 const movieSelected = (id) => {
   sessionStorage.setItem('movieId', id);
-  window.location = 'movie.html';
+  document.location = 'movie.html';
   return false
 }
 
@@ -148,9 +150,41 @@ const getMovie = () => {
 
 
     .then((response) => {
+
       console.log(response);
       let movie = response.data;
+      let movieRating = (movie.vote_average / 2).toFixed(1);
 
+      if (movieRating === 5) {
+        movieRating = '★★★★★ ' + movieRating;
+      }
+      if (movieRating >= 4.5) {
+        movieRating = '★★★★☆ ' + movieRating;
+      }
+      if (movieRating >= 4) {
+        movieRating = '★★★★ ' + movieRating;
+      }
+      if (movieRating >= 3.5) {
+        movieRating = '★★★☆ ' + movieRating;
+      }
+      if (movieRating >= 3) {
+        movieRating = '★★★ ' + movieRating;
+      }
+      if (movieRating >= 2.5) {
+        movieRating = '★★☆ ' + movieRating;
+      }
+      if (movieRating >= 2) {
+        movieRating = '★★ ' + movieRating;
+      }
+      if (movieRating >= 1.5) {
+        movieRating = '★☆ ' + movieRating;
+      }
+      if (movieRating >= 1) {
+        movieRating = '★ ' + movieRating;
+      }
+      if (movieRating >= 0) {
+        movieRating = '☆ ' + movieRating;
+      }
       let detailMainOutput = `
         <div class="main__detail__movie__wrap">
           <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" class="main__detail__poster">
@@ -158,7 +192,7 @@ const getMovie = () => {
         <ul class="main__detail__info__lists">
           <li class="main__detail__info__item"><strong>개봉일: </strong> ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</li>
           <li class="main__detail__info__item"><strong>장르: </strong> ${movie.genres[0].name}</li>
-          <li class="main__detail__info__item"><strong>평점: </strong>${movie.vote_average}/10</li>
+          <li class="main__detail__info__item"><strong>평점: </strong>${movieRating}</li>
           <li class="main__detail__info__item"><strong>언어: </strong> ${movie.spoken_languages[0].name.split('/조선말')}</li>
           <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime}분</li>
         </ul>
@@ -174,9 +208,8 @@ const getMovie = () => {
           <p class="main__detail__synopsis__param">${movie.overview}</p>
         </div>
       `;
-
-      $('.main__detail__main__wrap').html(detailMainOutput);
-      $('.main__detail__sub__wrap').html(detailSubOutput);
+      detailMainWrap.append(detailMainOutput);
+      detailSubWrap.append(detailSubOutput);
     })
 
     .catch((err) => {
@@ -190,15 +223,14 @@ const getMovie = () => {
   axios.get('http://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&append_to_response=movie_credits')
     .then((response) => {
       let creditsData = response.data;
-      
+
       let cast = response.data.cast;
       let castData = [];
       let castOutput = '';
-      
+
       let crew = response.data.crew;
       let crewData = [];
       let crewLength = response.data.crew.length
-      
 
 
 
@@ -233,7 +265,6 @@ const getMovie = () => {
       `;
 
       $.each(castData, (index, credit) => {
-        console.log(credit);
         castOutput += `
             <li class="main__detail__credits">
               <img class="cast__profile"src="${credit.profile_path}"/>
@@ -270,18 +301,50 @@ const getMovies = () => {
       let movies = response.results;
       let coverOutput = '';
       let listOutput = '';
-      // console.log(response);
-      // console.log(movies);
+
 
 
       $.each(movies, (index, movie) => {
-        // console.log(movie);
+        let movieRating = (movie.vote_average / 2).toFixed(1);
+        
+
+        if (movieRating >= 5) {
+          movieRating = '★★★★★ ' + movieRating
+        }
+        if (movieRating >= 4.5) {
+          movieRating = '★★★★☆ ' + movieRating
+        }
+        if (movieRating >= 4) {
+          movieRating = '★★★★ ' + movieRating
+        }
+        if (movieRating >= 3.5) {
+          movieRating = '★★★☆ ' + movieRating
+        }
+        if (movieRating >= 3) {
+          movieRating = '★★★ ' + movieRating
+        }
+        if (movieRating >= 2.5) {
+          movieRating = '★★☆ ' + movieRating
+        }
+        if (movieRating >= 2) {
+          movieRating = '★★ ' + movieRating
+        }
+        if (movieRating >= 1.5) {
+          movieRating = '★☆ ' + movieRating
+        }
+        if (movieRating >= 1) {
+          movieRating = '★ ' + movieRating
+        }
+        if (movieRating <= 1) {
+          movieRating = '☆ ' + movieRating
+        }
+        console.log(movieRating);
         coverOutput += `
           <div class="swiper-slide"> 
             <img src="${state.backdrop+movie.backdrop_path === state.backdrop+'null' ? state.no_cover: state.backdrop+movie.backdrop_path}" alt="main image" class="main__cover__image">
             <h2 class="main__cover__title">${movie.title}</h2>
             <span class="main__cover__release">개봉일 : ${movie.release_date.replace('-', '년 ').replace('-', '월 ').concat('일')}</span>
-            <span class="main__cover__rating">평점 : ${movie.vote_average}</span>
+            <span class="main__cover__rating">평점 : ${movieRating}</span>
             <p class="main__cover__synopsis">${movie.overview}</p>
           </div>
         `;
@@ -291,7 +354,7 @@ const getMovies = () => {
             <div class="movie__item__wrap">
               <div class="movie__poster__wrap">
                 <img class="movie__poster" src="${(state.profile + movie.poster_path === state.profile+'null') ? state.no_poster: state.profile + movie.poster_path}" alt="${movie.title}" />
-                <span class="movie__rating">${movie.vote_average}</span>
+                <span class="movie__rating">${movieRating}</span>
               </div>
               <div class="movie__info__wrap">
                 <h3 class="movie__title">${movie.title}</h3>

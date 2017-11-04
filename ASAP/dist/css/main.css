@@ -270,7 +270,7 @@ html {
   position: absolute;
   top: 62.5%;
   left: 10%;
-  color: #fff;
+  color: #fbed96;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); }
 
 .main__cover__synopsis {
@@ -310,7 +310,7 @@ html {
 .movie__poster__wrap {
   position: relative;
   height: 263px;
-  padding: 1.5rem 0; }
+  padding-top: 1.5rem; }
 
 .movie__poster {
   display: block;
@@ -322,13 +322,13 @@ html {
 
 .movie__rating {
   position: absolute;
-  top: 30px;
-  left: 15%;
-  color: #fff;
+  top: 40px;
+  left: 30px;
+  color: #fbed96;
   font-family: "San Francisco", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); }
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.75); }
 
 .movie__add {
   position: absolute;
@@ -447,7 +447,7 @@ html {
   width: 70%;
   margin: 0 auto;
   line-height: 1.25rem;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   color: #333; }
 
 .main__detail__sub__wrap {
