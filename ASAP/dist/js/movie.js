@@ -9,6 +9,7 @@ let flags = false;
 
 
 
+
 let API = '?api_key=64391ca210dbae0d44b0a622177ef8d3';
 let URL = '';
 let state = {
@@ -41,16 +42,30 @@ let state = {
 
 const init = () => {
   bind();
+  movieListToggle()
   getMovies();
   loaders();
+
 
 }
 
 
 
+const movieListToggle = () => {
 
+  $(document).on('click', '.nav__view__list', function() {
+    $('.main__movie-list__wrap').addClass('list-mode')
+  });
 
+  $(document).on('click', '.nav__view__module', function() {
+    $('.main__movie-list__wrap').removeClass('list-mode')
+  });
 
+  $('.main__movie-list__wrap').hasClass('list-mode') ? console.log($('.movie__synopsis')) : console.log('no');
+
+}
+
+// movieListToggle()
 
 
 
@@ -128,9 +143,9 @@ const searchMovies = (searchText) => {
 
 
 
-const movieSelected = (id) => {
+function movieSelected(id) {
   sessionStorage.setItem('movieId', id);
-  document.location = 'movie.html';
+  window.location = 'movie.html';
   return false
 }
 
@@ -150,45 +165,22 @@ const getMovie = () => {
   let movieId = sessionStorage.getItem('movieId');
 
   axios.get('http://api.themoviedb.org/3/movie/' + movieId + '?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko')
-
-
-
     .then((response) => {
-
       console.log(response);
       let movie = response.data;
       let movieRating = (movie.vote_average / 2).toFixed(1);
 
-      if (movieRating === 5) {
-        movieRating = '★★★★★ ' + movieRating;
-      }
-      if (movieRating >= 4.5) {
-        movieRating = '★★★★☆ ' + movieRating;
-      }
-      if (movieRating >= 4) {
-        movieRating = '★★★★ ' + movieRating;
-      }
-      if (movieRating >= 3.5) {
-        movieRating = '★★★☆ ' + movieRating;
-      }
-      if (movieRating >= 3) {
-        movieRating = '★★★ ' + movieRating;
-      }
-      if (movieRating >= 2.5) {
-        movieRating = '★★☆ ' + movieRating;
-      }
-      if (movieRating >= 2) {
-        movieRating = '★★ ' + movieRating;
-      }
-      if (movieRating >= 1.5) {
-        movieRating = '★☆ ' + movieRating;
-      }
-      if (movieRating >= 1) {
-        movieRating = '★ ' + movieRating;
-      }
-      if (movieRating >= 0) {
-        movieRating = '☆ ' + movieRating;
-      }
+      if (movieRating === 5) { movieRating = '★★★★★ ' + movieRating; }
+      if (movieRating >= 4.5) { movieRating = '★★★★☆ ' + movieRating; }
+      if (movieRating >= 4) { movieRating = '★★★★ ' + movieRating; }
+      if (movieRating >= 3.5) { movieRating = '★★★☆ ' + movieRating; }
+      if (movieRating >= 3) { movieRating = '★★★ ' + movieRating; }
+      if (movieRating >= 2.5) { movieRating = '★★☆ ' + movieRating; }
+      if (movieRating >= 2) { movieRating = '★★ ' + movieRating; }
+      if (movieRating >= 1.5) { movieRating = '★☆ ' + movieRating; }
+      if (movieRating >= 1) { movieRating = '★ ' + movieRating; }
+      if (movieRating >= 0) { movieRating = '☆ ' + movieRating; }
+
       let detailMainOutput = `
         <div class="main__detail__movie__wrap">
           <img src="https://image.tmdb.org/t/p/w342${movie.poster_path}" class="main__detail__poster">
@@ -205,13 +197,15 @@ const getMovie = () => {
           <a class="main__detail__btn back" href="index.html">Back to the Main</a>
         </div>
       `;
+
       let detailSubOutput = `
-        <div class="main__detail__synopsis__wrap">
-          <h2 class="main__detail__movie__title">${movie.title}<span class="main__detail__movie__year">${movie.release_date.split('-')[0]}<span></h2>
-          <h3 class="main__detail__synopsis__title">SYNOPSIS</h3>
-          <p class="main__detail__synopsis__param">${movie.overview}</p>
-        </div>
+      <div class="main__detail__synopsis__wrap">
+        <h2 class="main__detail__movie__title">${movie.title}<span class="main__detail__movie__year">${movie.release_date.split('-')[0]}<span></h2>
+        <h3 class="main__detail__synopsis__title">SYNOPSIS</h3>
+        <p class="main__detail__synopsis__param">${movie.overview}</p>
+      </div>
       `;
+
       detailMainWrap.append(detailMainOutput);
       detailSubWrap.append(detailSubOutput);
     })
@@ -222,21 +216,15 @@ const getMovie = () => {
 
 
 
-
-
   axios.get('http://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&append_to_response=movie_credits')
     .then((response) => {
       let creditsData = response.data;
-
       let cast = response.data.cast;
       let castData = [];
       let castOutput = '';
-
       let crew = response.data.crew;
       let crewData = [];
       let crewLength = response.data.crew.length
-
-
 
       for (let i = 0; i < crewLength; i++) {
         if (crew[i].job === 'Director') {
@@ -270,11 +258,11 @@ const getMovie = () => {
 
       $.each(castData, (index, credit) => {
         castOutput += `
-            <li class="main__detail__credits">
-              <img class="cast__profile"src="${credit.profile_path}"/>
-              <p class="cast__name">${credit.name}</p>
-              <p class="cast__character">${credit.character}역</p>
-            </li>
+        <li class="main__detail__credits">
+          <img class="cast__profile"src="${credit.profile_path}"/>
+          <p class="cast__name">${credit.name}</p>
+          <p class="cast__character">${credit.character}역</p>
+        </li>
       `;
       })
       detailCreditslists.append(crewOutput);
@@ -282,7 +270,7 @@ const getMovie = () => {
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
 }
 
 
@@ -388,10 +376,19 @@ const getMovies = () => {
     .catch((err) => {
       console.log(err);
     });
-
-
-
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 const loaders = () => {
   loaderOutput = `
