@@ -21,7 +21,7 @@ let state = {
   poster_small: 'https://image.tmdb.org/t/p/w342',
   backdrop: "https://image.tmdb.org/t/p/w1280",
   top_rated: '&sort_by=vote_average.desc&vote_count.gte=1000',
-  new_release: '&primary_release_year=2017&vote_count.gte=50',
+  new_release: '&primary_release_year=2017&vote_count.gte=25',
   popularity: '&primary_release_year=2016&vote_count.gte=50',
   korean: '&language=ko',
   pages: '&page=',
@@ -190,7 +190,7 @@ const getMovie = () => {
           <li class="main__detail__info__item"><strong>장르: </strong> ${movie.genres[0].name}</li>
           <li class="main__detail__info__item"><strong>평점: </strong>${movieRating}</li>
           <li class="main__detail__info__item"><strong>언어: </strong> ${movie.spoken_languages[0].name.split('/조선말')}</li>
-          <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime === 0? '정보 없음' : movie.runtime+"분"}</li>
+          <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime === 0 || 'null' ? '정보 없음' : movie.runtime+"분"}</li>
         </ul>
         <div class="main__detail__btn__wrap">
           <a class="main__detail__btn imdb" href="http://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
@@ -290,7 +290,7 @@ const getMovies = () => {
     newReleased: state.discover + API + state.korean + state.new_release + state.pages + page
   };
 
-  $.get(urls.topRated)
+  $.get(urls.newReleased)
     .then((response) => {
       console.log(response);
       let i = 1;
