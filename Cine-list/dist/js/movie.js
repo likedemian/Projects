@@ -26,9 +26,9 @@ let state = {
   korean: '&language=ko',
   pages: '&page=',
   keyword: '',
-  no_poster: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-poster.png',
-  no_cover: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no_cover_image.png',
-  no_profile: 'https://raw.githubusercontent.com/likedemian/Projects/master/ASAP/dist/no-profile.png'
+  no_poster: `https://raw.githubusercontent.com/likedemian/Projects/master/Cine-list/dist/no-poster.png`,
+  no_cover: `https://raw.githubusercontent.com/likedemian/Projects/master/Cine-list/dist/no_cover_image.png`,
+  no_profile: `https://raw.githubusercontent.com/likedemian/Projects/master/Cine-list/dist/no-profile.png`
 }
 
 
