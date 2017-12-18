@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,MAAM;EACJ,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,GAAG;EAClB,UAAU,EAAE,IAAI;;AAElB,MAAM;EACJ,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,aAAa,EAAE,GAAG;EAClB,UAAU,EAAE,IAAI;;ACVlB,MAAM;EACJ,UAAU,EAAE,IAAI;EAChB,UAAU,EAAE,WAAW;;AAEzB,MAAM;EACJ,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,OAAO",
+"sources": ["../../src/sass/components/_stone.sass","../../src/sass/components/_board.sass"],
+"names": [],
+"file": "main.css"
+}
