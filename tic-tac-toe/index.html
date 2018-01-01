@@ -7,30 +7,30 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Tic Tac Toe</title>
   <link rel="stylesheet" type="text/css" href="dist/css/style.css">
-  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 
 </head>
 
-<body>
+<body onload="initGame();">
   <h1>Tic Tac Toe!</h1>
+  <p id="message"></p>
   <table id="matrix__container">
     <tr>
-      <td class="matrix" id="m1"></td>
-      <td class="matrix" id="m2"></td>
-      <td class="matrix" id="m3"></td>
+      <td class="matrix" id="m1" onclick="nextTurn(this);"></td>
+      <td class="matrix" id="m2" onclick="nextTurn(this);"></td>
+      <td class="matrix" id="m3" onclick="nextTurn(this);"></td>
     </tr>
     <tr>
-      <td class="matrix" id="m4"></td>
-      <td class="matrix" id="m5"></td>
-      <td class="matrix" id="m6"></td>
+      <td class="matrix" id="m4" onclick="nextTurn(this);"></td>
+      <td class="matrix" id="m5" onclick="nextTurn(this);"></td>
+      <td class="matrix" id="m6" onclick="nextTurn(this);"></td>
     </tr>
     <tr>
-      <td class="matrix" id="m7"></td>
-      <td class="matrix" id="m8"></td>
-      <td class="matrix" id="m9"></td>
+      <td class="matrix" id="m7" onclick="nextTurn(this);"></td>
+      <td class="matrix" id="m8" onclick="nextTurn(this);"></td>
+      <td class="matrix" id="m9" onclick="nextTurn(this);"></td>
     </tr>
   </table>
-  <script src="dist/js/scripts.js"></script>
+  <script src="dist/js/script.js"></script>
 </body>
 
 </html>
