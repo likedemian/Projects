@@ -21,8 +21,8 @@ let state = {
   poster_small: 'https://image.tmdb.org/t/p/w342',
   backdrop: "https://image.tmdb.org/t/p/w1280",
   top_rated: '&sort_by=vote_average.desc&vote_count.gte=1000',
-  new_release: '&primary_release_year=2017&vote_count.gte=25',
-  popularity: '&primary_release_year=2016&vote_count.gte=50',
+  new_release: '&primary_release_year=2018+2017&vote_count.gte=25',
+  popularity: '&primary_release_year=2017&vote_count.gte=50',
   korean: '&language=ko',
   pages: '&page=',
   keyword: '',
@@ -45,14 +45,11 @@ const init = () => {
   movieListToggle()
   getMovies();
   loaders();
-
-
 }
 
 
 
 const movieListToggle = () => {
-
   $(document).on('click', '.nav__view__list', function() {
     $('.main__movie-list__wrap').addClass('list-mode')
   });
@@ -62,10 +59,8 @@ const movieListToggle = () => {
   });
 
   $('.main__movie-list__wrap').hasClass('list-mode') ? console.log($('.movie__synopsis')) : console.log('no');
-
 }
 
-// movieListToggle()
 
 
 
