@@ -527,8 +527,7 @@ html {
   height: 240px;
   font-size: 0.8rem;
   color: #fff;
-  font-weight: 300;
-  overflow-y: scroll; }
+  font-weight: 300; }
 
 .main__detail__credits__wrap {
   float: right;

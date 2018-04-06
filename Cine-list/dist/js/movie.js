@@ -16,7 +16,7 @@ let state = {
   movies: 'https://api.themoviedb.org/3/movie/',
   discover: 'https://api.themoviedb.org/3/discover/movie',
   search: 'https://api.themoviedb.org/3/search/movie',
-  genres: 'http://api.themoviedb.org/3/genre/movie/list',
+  genres: 'https://api.themoviedb.org/3/genre/movie/list',
   profile: 'https://image.tmdb.org/t/p/w185',
   poster_small: 'https://image.tmdb.org/t/p/w342',
   backdrop: "https://image.tmdb.org/t/p/w1280",
@@ -45,14 +45,11 @@ const init = () => {
   movieListToggle()
   getMovies();
   loaders();
-
-
 }
 
 
 
 const movieListToggle = () => {
-
   $(document).on('click', '.nav__view__list', function() {
     $('.main__movie-list__wrap').addClass('list-mode')
   });
@@ -62,10 +59,8 @@ const movieListToggle = () => {
   });
 
   $('.main__movie-list__wrap').hasClass('list-mode') ? console.log($('.movie__synopsis')) : console.log('no');
-
 }
 
-// movieListToggle()
 
 
 
