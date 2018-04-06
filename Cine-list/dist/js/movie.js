@@ -159,7 +159,7 @@ function movieSelected(id) {
 const getMovie = () => {
   let movieId = sessionStorage.getItem('movieId');
 
-  axios.get('http://api.themoviedb.org/3/movie/' + movieId + '?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko')
+  axios.get('https://api.themoviedb.org/3/movie/' + movieId + '?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko')
     .then((response) => {
       console.log(response);
       let movie = response.data;
