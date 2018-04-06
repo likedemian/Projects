@@ -22,7 +22,7 @@ let state = {
   backdrop: "https://image.tmdb.org/t/p/w1280",
   top_rated: '&sort_by=vote_average.desc&vote_count.gte=1000',
   new_release: '&primary_release_year=2018+2017&vote_count.gte=25',
-  popularity: '&primary_release_year=2017&vote_count.gte=50',
+  popularity: '&primary_release_year=2018&vote_count.gte=25',
   korean: '&language=ko',
   pages: '&page=',
   keyword: '',
@@ -285,7 +285,7 @@ const getMovies = () => {
     newReleased: state.discover + API + state.korean + state.new_release + state.pages + page
   };
 
-  $.get(urls.newReleased)
+  $.get(urls.trending)
     .then((response) => {
       console.log(response);
       let i = 1;
