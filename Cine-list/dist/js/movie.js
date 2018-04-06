@@ -102,13 +102,10 @@ $(document).ready(() => {
 const searchMovies = (searchText) => {
   axios.get('https://api.themoviedb.org/3/search/movie?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&vote_count.gte=100&query=' + searchText)
     .then((response) => {
-
       console.log(response);
       let movies = response.data.results
       let searchOutput = '';
       $.each(movies, (index, movie) => {
-
-
         searchOutput += `
           <a onclick="movieSelected('${movie.id}')" class="header__search__link" href="#">
             <div class="header__search__result">
@@ -188,7 +185,7 @@ const getMovie = () => {
           <li class="main__detail__info__item"><strong>상영시간: </strong> ${movie.runtime === 0 || 'null' ? '정보 없음' : movie.runtime+"분"}</li>
         </ul>
         <div class="main__detail__btn__wrap">
-          <a class="main__detail__btn imdb" href="http://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
+          <a class="main__detail__btn imdb" href="https://imdb.com/title/${movie.imdb_id}" target="_blank">View IMDB</a>
           <a class="main__detail__btn back" href="index.html">Back to the Main</a>
         </div>
       `;
@@ -211,7 +208,7 @@ const getMovie = () => {
 
 
 
-  axios.get('http://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&append_to_response=movie_credits')
+  axios.get('https://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=64391ca210dbae0d44b0a622177ef8d3&language=ko&append_to_response=movie_credits')
     .then((response) => {
       let creditsData = response.data;
       let cast = response.data.cast;
